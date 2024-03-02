@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  factory:
+    build:
+      context: ./factory
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - cira-network
+  machine-01:
+    build:
+      context: ./machine-01
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - cira-network
+
+networks:
+  cira-network:
+    driver: bridge
