@@ -1,5 +1,5 @@
 # Exercise 2: Kafka with Spring
-## Michal Cisco & Raffael Rot
+## Michal Cislo & Raffael Rot
 
 ### Table of Content
 
