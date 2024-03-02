@@ -1,4 +1,4 @@
-package ch.unisg;
+package ch.unisg.consumer;
 
 /**
  * Hello world!
