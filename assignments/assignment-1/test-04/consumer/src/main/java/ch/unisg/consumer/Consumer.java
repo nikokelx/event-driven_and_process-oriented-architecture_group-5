@@ -17,7 +17,6 @@ import java.util.Properties;
 
 public class Consumer
 {
-    private static long lastOffset = -1;
     public static void main( String[] args ) throws IOException
     {
         KafkaConsumer<String, String> kafkaConsumer;
@@ -26,65 +25,50 @@ public class Consumer
             properties.load(props);
             kafkaConsumer = new KafkaConsumer<>(properties);
         }
-
         kafkaConsumer.subscribe(Arrays.asList("project_events"));
 
         try {
             while (true) {
                 ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(100));
-                long currentOffset = -1;
-                System.out.println("Records: " + records.count());
-
-                TopicPartition partition = new TopicPartition("project_events", 0);
-
-                Map<TopicPartition, Long> endOffsets = kafkaConsumer.endOffsets(Arrays.asList(partition));
-                Long latestOffset = endOffsets.get(partition);
-
-                for (TopicPartition par : records.partitions()) {
-                    // Get the end offset for the partition
-                    long endOffset = kafkaConsumer.endOffsets(Collections.singletonList(par)).get(par);
-
-                    /// Get the committed offset
-                    Map<TopicPartition, OffsetAndMetadata> committedOffsets = kafkaConsumer.committed(Collections.singleton(par));
-                    OffsetAndMetadata committedMetadata = committedOffsets.get(par);
-
-                    // Check if the committed offset is available
-                    long committedOffset = -1;
-                    if (committedMetadata != null) {
-                        committedOffset = committedMetadata.offset();
-                        // Print the committed offset
-                        System.out.println("Offset committed by the consumer group: " + committedOffset);
-                    } else {
-                        System.out.println("No offset committed by the consumer group for partition: " + par);
-                    }
-
-                    // Calculate the difference
-                    long difference = endOffset - committedOffset;
-
-                    System.out.println("Partition " + partition.partition() +
-                            ": Last Offset Stored by Broker = " + endOffset +
-                            ", Last Committed Offset = " + committedOffset +
-                            ", Difference = " + difference);
-                }
+                System.out.println("Polled records: " + records.count());
 
                 for (ConsumerRecord<String, String> record : records) {
-                    currentOffset = record.offset();
-
-                    // Introduce lag by adding a delay
-                    // Thread.sleep(1500);
-
                     switch (record.topic()) {
                         case "project_events":
-                            System.out.println("Received project_events message - Offset = " + record.offset() +  " key: " + record.key() + " value: " + record.value());
-                            long lag = latestOffset - currentOffset;
-                            System.out.println("-------------------------------------------------------------");
-                            System.out.println("Current Lag: " + lag);
-                            System.out.println("-------------------------------------------------------------");
+                            for (TopicPartition par : records.partitions())
+                            {
+                                // Get the end offset for the partition
+                                long endOffset = kafkaConsumer.endOffsets(Collections.singletonList(par)).get(par);
+
+                                /// Get the committed offset
+                                Map<TopicPartition, OffsetAndMetadata> committedOffsets = kafkaConsumer.committed(Collections.singleton(par));
+                                OffsetAndMetadata committedMetadata = committedOffsets.get(par);
+
+                                // Check if the committed offset is available
+                                long committedOffset = -1;
+                                if (committedMetadata != null) {
+                                    committedOffset = committedMetadata.offset();
+
+                                    // Calculate the difference
+                                    long consumerLag = endOffset - committedOffset;
+                                    System.out.println("Partition " + par.partition() +
+                                            ": Last Offset Stored by Broker = " + endOffset +
+                                            ", Last Committed Offset = " + committedOffset +
+                                            ", Current Lag = " + consumerLag
+                                    );
+                                }
+                            }
+
+                            System.out.println("----------------------");
+                            System.out.println("Received project_events - Offset = " + record.offset() +  " key: " + record.key() + " partition: " + record.partition());
+                            System.out.println("-----------------------------------------------------------------------------");
                             break;
                         default:
                             throw new IllegalStateException("Shouldn't be possible to get message on topic " + record.topic());
                     }
                 }
+
+                System.out.println("################# Polled records processed ##################");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
