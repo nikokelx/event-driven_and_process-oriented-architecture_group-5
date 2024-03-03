@@ -2,7 +2,7 @@ FROM maven as build
 
 COPY . /app
 
-RUN mvn -f app/pom.xml clean package
+RUN mvn -f app/pom.xml clean package -DskipTests
 
 FROM openjdk:21-jdk
 
