@@ -1,0 +1,27 @@
+package ch.unisg.machine01.infrastructure.adapters.messages;
+
+import ch.unisg.machine01.core.entities.Machine;
+import ch.unisg.machine01.core.ports.out.MachineStatusEventPort;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary
+@RequiredArgsConstructor
+public class MachineStatusMessage  implements MachineStatusEventPort {
+
+    @Value("${spring.kafka.topic}")
+    private String topic;
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Override
+    public void toggleMachineStatus(Machine.MachineStatus machineStatus) {
+        kafkaTemplate.send(topic, machineStatus.getValue().toString());
+    }
+}
