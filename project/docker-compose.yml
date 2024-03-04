@@ -30,6 +30,21 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
+  
+  database-factory:
+    container_name: db_factory
+    hostname: db_factory
+    image: postgres:alpine
+    ports:
+      - 5431:5432
+    volumes:
+      - db-factory:/Library/PostgreSQL/15/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test123!
+      - POSTGRES_DB=cira
+    networks:
+      - cira-network
 
   factory:
     build:
@@ -52,6 +67,9 @@ services:
       - cira-network
     depends_on:
       - kafka
+
+volumes:
+  db-factory:
 
 networks:
   cira-network:
