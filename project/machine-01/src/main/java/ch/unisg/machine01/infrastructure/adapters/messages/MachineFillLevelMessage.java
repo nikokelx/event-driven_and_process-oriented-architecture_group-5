@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Primary
 @RequiredArgsConstructor
-public class FillLevelMessage implements FillLevelEventPort {
+public class MachineFillLevelMessage implements FillLevelEventPort {
 
     @Value("${spring.kafka.topic-fill-level}")
     private String topic;
@@ -22,6 +22,8 @@ public class FillLevelMessage implements FillLevelEventPort {
 
     @Override
     public void publishFillLevel(Machine.MachineFillLevel machineFillLevel) {
+
         kafkaTemplate.send(topic, String.valueOf(machineFillLevel.getValue()));
+
     }
 }

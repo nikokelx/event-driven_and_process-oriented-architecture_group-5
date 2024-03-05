@@ -1,11 +1,6 @@
 package ch.unisg.factory.infrastructure.repository;
 
-import ch.unisg.factory.core.entities.MachineRepository;
-
-import java.util.List;
-import java.util.Optional;
-
-public class MachinePersistence {
+public class MachinePersistenceAdapter {
     /*
 
     Optional<MachineRepository> machine1 = repository.findById("machine-01");

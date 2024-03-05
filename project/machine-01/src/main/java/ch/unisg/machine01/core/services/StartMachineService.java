@@ -19,6 +19,7 @@ public class StartMachineService implements StartMachineUseCase {
         Machine machine = new Machine();
 
         machineStatusEventPort.toggleMachineStatus(machine.getMachineStatus());
+        System.out.println("1");
 
         return machine.getMachineStatus();
     }

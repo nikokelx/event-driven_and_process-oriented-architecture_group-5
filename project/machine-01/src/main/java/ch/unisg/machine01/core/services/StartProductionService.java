@@ -18,15 +18,8 @@ public class StartProductionService implements StartProductionUseCase {
 
         Machine.MachineFillLevel machineFillLevel = new Machine.MachineFillLevel(0);
 
-        final int[] amount = {0};
-
         Thread productionThread = new Thread(() -> {
-            while (amount[0] < 100) {
-                amount[0] += 1;
-                fillLevelEventPort.publishFillLevel(new Machine.MachineFillLevel(amount[0]));
-                System.out.println(amount[0]);
-                // fillLevelEventPort.publishFillLevel(machineFillLevel);
-            }
+            fillLevelEventPort.publishFillLevel(machineFillLevel);
         });
 
         productionThread.start();
