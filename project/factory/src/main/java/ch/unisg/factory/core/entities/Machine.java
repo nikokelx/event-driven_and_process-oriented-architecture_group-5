@@ -18,28 +18,28 @@ public class Machine {
     private MachineStatus machineStatus;
 
     @Getter @Setter
-    private MachineInventoryLevel machineInventoryLevel;
+    private MachineFillLevel machineFillLevel;
 
 
     private Machine(
             Machine.MachineId machineId,
             Machine.MachineName machineName,
             Machine.MachineStatus machineStatus,
-            Machine.MachineInventoryLevel machineInventoryLevel
+            Machine.MachineFillLevel machineInventoryLevel
     ) {
         this.machineId = machineId;
         this.machineName = machineName;
         this.machineStatus = machineStatus;
-        this.machineInventoryLevel = machineInventoryLevel;
+        this.machineFillLevel = machineFillLevel;
     }
 
     public static Machine addMachine(
             Machine.MachineId machineId,
             Machine.MachineName machineName,
             Machine.MachineStatus machineStatus,
-            Machine.MachineInventoryLevel machineInventoryLevel
+            Machine.MachineFillLevel machineFillLevel
     ) {
-        return new Machine(machineId, machineName, machineStatus, machineInventoryLevel);
+        return new Machine(machineId, machineName, machineStatus, machineFillLevel);
     }
 
     @Value
@@ -58,7 +58,7 @@ public class Machine {
     }
 
     @Value
-    public static class MachineInventoryLevel {
+    public static class MachineFillLevel {
         int value;
     }
 }

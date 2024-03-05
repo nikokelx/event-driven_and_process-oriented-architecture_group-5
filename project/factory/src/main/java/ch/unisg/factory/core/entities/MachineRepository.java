@@ -19,8 +19,8 @@ public class MachineRepository {
     @Column(name = "status")
     private Boolean machineStatus;
 
-    @Column(name = "inventory_level")
-    private int machineInventoryLevel;
+    @Column(name = "fill_level")
+    private int machineFillLevel;
 
     public String getMachineName() {
         return machineName;
