@@ -21,7 +21,6 @@ public class StartMachineWebController {
 
         Machine.MachineStatus machineStatus = startMachineUseCase.startMachine(command);
 
-        System.out.println(machineStatus.getValue());
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
