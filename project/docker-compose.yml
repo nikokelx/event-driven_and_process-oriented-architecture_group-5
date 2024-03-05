@@ -77,7 +77,7 @@ services:
       context: ./warehouse
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "9010:9010"
     networks:
       - cira-network
     depends_on:

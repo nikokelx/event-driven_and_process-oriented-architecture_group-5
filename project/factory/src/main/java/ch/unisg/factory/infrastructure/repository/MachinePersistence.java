@@ -7,9 +7,6 @@ import java.util.Optional;
 
 public class MachinePersistence {
     /*
-    jdbcTemplate.queryForObject("SELECT 1", Integer.class);
-        System.out.println("Test success??");
-        System.out.println(repository.findAll());
 
     Optional<MachineRepository> machine1 = repository.findById("machine-01");
         System.out.println(machine1.get().getMachineName());
