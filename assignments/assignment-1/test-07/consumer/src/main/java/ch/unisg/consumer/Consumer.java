@@ -32,9 +32,6 @@ public class Consumer
                     case "project_events":
                         System.out.println("Received project_events message - key: " + record.key() + " value: " + record.value() + " partition: " + record.partition());
                         break;
-                    case "global_events":
-                        System.out.println("Received global_events message - key: " + record.key() + " value: " + record.value() + " partition: " + record.partition());
-                        break;
                     default:
                         throw new IllegalStateException("Shouldn't be possible to get message on topic " + record.topic());
                 }

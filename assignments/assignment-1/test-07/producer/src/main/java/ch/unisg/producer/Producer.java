@@ -22,9 +22,11 @@ public class Producer
 
         System.out.println("Amount of partitions " + kafkaProducer.partitionsFor("project_events").size());
 
+        int noOfMessages = 1000000000;
 
+        long startTime = System.nanoTime();
         try {
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < noOfMessages; i++) {
                 kafkaProducer.send(new ProducerRecord<String, String>(
                         "project_events", // topic
                         "project_id_" + i, //key
@@ -35,6 +37,11 @@ public class Producer
                     System.out.println("Sent message number " + i);
                 }
             }
+
+            long endTime = System.nanoTime();
+            long durationInNanos = endTime - startTime;
+            System.out.println("Time taken to send " + noOfMessages + " messages: " + (durationInNanos / 1000000) + " ms.");
+
         } catch (Throwable throwable) {
             System.out.println(throwable.getStackTrace());
         } finally {
