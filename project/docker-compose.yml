@@ -1,4 +1,4 @@
-version: "4"
+version: "3"
 
 services:
   zookeeper:
@@ -42,7 +42,22 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=test123!
-      - POSTGRES_DB=cira
+      - POSTGRES_DB=factory
+    networks:
+      - cira-network
+  
+  database-warehouse:
+    container_name: db_warehouse
+    hostname: db_warehouse
+    image: postgres:alpine
+    ports:
+      - 5433:5432
+    volumes:
+      - db-warehouse:/Library/PostgreSQL/15/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test123!
+      - POSTGRES_DB=warehouse
     networks:
       - cira-network
 
@@ -57,6 +72,17 @@ services:
     depends_on:
       - kafka
   
+  warehouse:
+    build:
+      context: ./warehouse
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
+
   machine-01:
     build:
       context: ./machine-01
@@ -70,6 +96,7 @@ services:
 
 volumes:
   db-factory:
+  db-warehouse:
 
 networks:
   cira-network:

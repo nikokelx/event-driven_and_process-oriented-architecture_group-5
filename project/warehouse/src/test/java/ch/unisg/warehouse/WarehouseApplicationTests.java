@@ -1,9 +1,8 @@
-package ch.unisg.machine01;
+package ch.unisg.warehouse;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Machine01ApplicationTests {
-
+class WarehouseApplicationTests {
 }
