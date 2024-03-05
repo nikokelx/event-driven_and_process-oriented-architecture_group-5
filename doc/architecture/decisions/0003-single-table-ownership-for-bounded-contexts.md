@@ -8,12 +8,14 @@ Accepted
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Single table ownership refers to the principle where each microservice exclusively manages and owns its database. In this assignment, we have to create an event pattern.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Single table ownership enhances services encapsulation. 
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+The complexity increases. 
+
+

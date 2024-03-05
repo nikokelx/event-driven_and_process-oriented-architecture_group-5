@@ -8,12 +8,12 @@ Accepted
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Apache Kafka is a distributed streaming platform that enables building real-time streaming data pipelines and applications.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Kafka makes the application highly scalable and ensuring data persistence. With kafka, we can create an event driven application. Therefore, we us it to learn event patterns.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+The implementation of kafka increases the complexity of the system. 

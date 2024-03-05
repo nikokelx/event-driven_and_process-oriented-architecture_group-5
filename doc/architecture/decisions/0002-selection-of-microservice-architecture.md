@@ -8,12 +8,13 @@ Accepted
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+For the EDPO course, we need to design a project that focuses on communication within microservices.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+For this, we use the microservice architecture. The microservice architecture offers a flexible experimentation environment.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+The consequence is an increasing level of complexity.
+

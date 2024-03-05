@@ -9,4 +9,3 @@
 5. Test -- the risk of data loss due to offset misconfigurations
 6. Test -- producers and consumers with multiple brokers, consumers and consumer groups, topics and partitions
 7. Test -- ackowledgment configurations
-8. Test -- ... 
