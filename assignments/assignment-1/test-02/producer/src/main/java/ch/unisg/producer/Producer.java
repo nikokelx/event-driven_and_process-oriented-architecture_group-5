@@ -10,7 +10,6 @@ import java.util.Properties;
 
 public class Producer
 {
-    private static final String[] global_events = {"project_build", "project_start", "project_end"};
     public static void main( String[] args ) throws IOException
     {
         KafkaProducer<String, String> kafkaProducer;
@@ -20,27 +19,15 @@ public class Producer
             kafkaProducer = new KafkaProducer<>(properties);
         }
 
-        System.out.println("Amount of partitions " + kafkaProducer.partitionsFor("project_events").size());
-
         try {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 10000000; i++) {
                 kafkaProducer.send(new ProducerRecord<String, String>(
                         "project_events", // topic
                         "project_id_" + i, //key
                         "some_value_" + System.nanoTime()) //value
                 );
 
-                if (i % 100 == 0) {
-                    String event = global_events[(int) (Math.random() * global_events.length)] + "_" + System.nanoTime();
-
-                    kafkaProducer.send(new ProducerRecord<String, String>(
-                            "global_events", // topic
-                            "project_id_" + i, // key
-                            event) // value
-                    );
-                    kafkaProducer.flush();
-                    System.out.println("Sent message number " + i);
-                }
+                System.out.println(i);
             }
         } catch (Throwable throwable) {
             System.out.println(throwable.getStackTrace());

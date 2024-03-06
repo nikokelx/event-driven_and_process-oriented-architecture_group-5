@@ -24,27 +24,22 @@ public class Consumer
             kafkaConsumer = new KafkaConsumer<>(properties);
         }
 
-        kafkaConsumer.subscribe(Arrays.asList("global_events", "project_events"));
+        kafkaConsumer.subscribe(Arrays.asList("project_events"));
+
+        int number = 0;
 
         while (true) {
             ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(100));
 
             for (ConsumerRecord<String, String> record : records) {
 
-                amount += 1;
                 switch (record.topic()) {
                     case "project_events":
-                        System.out.println("Received project_events message - key: " + record.key() + " value: " + record.value() + " partition: " + record.partition());
-                        break;
-                    case "global_events":
-                        System.out.println("Received global_events message - key: " + record.key() + " value: " + record.value() + " partition: " + record.partition());
-                        break;
-                    default:
-                        throw new IllegalStateException("Shouldn't be possible to get message on topic " + record.topic());
+                        number += 1;
                 }
             }
 
-            System.out.println(amount);
+            System.out.println(number);
         }
     }
 }
