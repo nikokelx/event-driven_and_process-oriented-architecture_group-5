@@ -29,11 +29,19 @@ I will shut down the docker container for a period of time. Afterwards, we evalu
 
 ## Conduct the experiment
 
+![test-1_consumer-0-0](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/d1fd841f-fdee-4588-96bb-ccc1d039bccd)
+
 The first experiment shows 136`025 dropped messages.
+
+![test-2_consumer_0-1](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/5e286075-cbbd-46bf-977a-73c5956f82bc)
 
 The second experiment shows 77'804 dropped messages.
 
+![test-3_consumer_1-0](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/2f966047-4aa2-4dfb-8038-703cd5508efd)
+
 The third experiment shows 945 dropped messages.
+
+![test-4_consumer_1-1](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/104ec423-4cfc-442c-94d9-3a2a6926597f)
 
 The fourth experiment shows zero dropped messages.
 
