@@ -60,6 +60,17 @@ services:
       - POSTGRES_DB=warehouse
     networks:
       - cira-network
+  
+  cira-frontend:
+    container_name: dashboard
+    hostname: dashboard
+    ports:
+      - 4325:4325
+    build:
+      context: ./cira-frontend
+      dockerfile: Dockerfile
+    networks:
+      - cira-network
 
   factory:
     build:
