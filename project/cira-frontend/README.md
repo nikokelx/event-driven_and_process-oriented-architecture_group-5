@@ -1,38 +1,40 @@
-# create-svelte
+# CiRa Frontend
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Welcome to our frontend. 
 
-## Creating a project
+## Pages
 
-If you're seeing this, you've probably already done this step. Congrats!
+path="/"
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### Assignments
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+path="/assignments/"
 
-## Developing
+#### Assignment 1
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+path="/assignments/assignment-01/"
 
-```bash
-npm run dev
+#### Assignment 2
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+path="/assignments/assignment-02/"
 
-## Building
+### Microservices
 
-To create a production version of your app:
+path="/services/"
 
-```bash
-npm run build
-```
+#### Factory
 
-You can preview the production build with `npm run preview`.
+path="/services/factory/"
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+#### Warehouse
+
+path="/services/warehouse/"
+
+#### Logistics
+
+path="/services/logistics/"
+
+#### Machines
+
+path="/services/machines/"
+
