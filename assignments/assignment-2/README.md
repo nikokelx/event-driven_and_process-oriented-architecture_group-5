@@ -1,4 +1,4 @@
-# Exercise 2: Kafka with Spring
+# Assignment 2: Kafka with Spring
 ## Michal Cislo & Raffael Rot
 
 ### Table of Content
