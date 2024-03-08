@@ -9,3 +9,19 @@
 4. Add an error scenario
 
 ![image](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/45c4271b-eb41-4066-806c-badf8535edd5)
+
+#### Present project idea
+
+The project encapsulates the supply chain of the company CiRa. 
+It has various machines that work with wood. After that, the goods are processed in the factory. 
+Furthermore, there is a warehouse that distributes the items currently. 
+The application will be extended in the future. My is name Peter.
+
+#### Event notification
+
+'code'
+sdasdas
+
+#### Event-carried state transfer
+
+#### Error scenario
