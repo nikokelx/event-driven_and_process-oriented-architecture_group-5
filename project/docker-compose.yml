@@ -94,6 +94,17 @@ services:
     depends_on:
       - kafka
 
+  logistics:
+    build:
+      context: ./logistics
+      dockerfile: Dockerfile
+    ports:
+      - 3005:3005
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
+
   machine-01:
     build:
       context: ./machine-01
