@@ -8,8 +8,6 @@
 3. Show implementation of event-carried state transfer
 4. Add an error scenario
 
-![image](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/45c4271b-eb41-4066-806c-badf8535edd5)
-
 #### Present project idea
 
 The project encapsulates the supply chain of the company CiRa. 
@@ -18,12 +16,32 @@ Furthermore, there is a warehouse that distributes the items currently.
 The application will be extended in the future. My is name Peter.
 
 #### Event notification
-`code` 
-``adsd``
 
-'code'
-sdasdas
+A POST request can start a machine. 
+The machine-01 service emits an event to the "machine-status" topic indicating its availability.  
+The Factory service pays attention to this topic and knows that the machine-01 is available.
+
+!Sequence Diagram
+
+Instructions: 
+
+```
+pyhton3 main.py
+Java .ct sd s
+```
 
 #### Event-carried state transfer
+
+The microservice Factory saves the current inventory level of the goods. 
+If a certain amount of wood shavings is in stock, the microservice sends a message called "stock-update." 
+The microservice Warehouse listens and keeps track of the data.
+
+!Sequence Diagram
+
+Instructions:
+
+```
+
+```
 
 #### Error scenario
