@@ -24,6 +24,8 @@ public class Producer
 
         try {
             for (int i = 0; i < 100000; i++) {
+                Thread.sleep(2);
+
                 kafkaProducer.send(new ProducerRecord<String, String>(
                         "project_events", // topic
                         "project_id_" + i, //key
