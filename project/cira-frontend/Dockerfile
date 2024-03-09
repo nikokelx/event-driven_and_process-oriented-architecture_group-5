@@ -7,6 +7,7 @@ COPY . .
 RUN npm install -g npm@latest
 RUN npm install -D @sveltejs/adapter-node
 RUN npm install dotenv
+RUN npm install kafkajs
 
 RUN npm run build
 

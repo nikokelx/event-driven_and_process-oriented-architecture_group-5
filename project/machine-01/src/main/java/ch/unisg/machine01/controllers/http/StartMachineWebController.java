@@ -15,7 +15,7 @@ public class StartMachineWebController {
 
     private final StartMachineUseCase startMachineUseCase;
 
-    @PostMapping(path = "/machine/start/")
+    @PostMapping(path = "/machine/start")
     public ResponseEntity<String> startMachine() {
         StartMachineCommand command = new StartMachineCommand();
 

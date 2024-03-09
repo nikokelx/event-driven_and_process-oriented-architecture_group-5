@@ -15,6 +15,7 @@ services:
   kafka:
     image: "bitnami/kafka:latest"
     hostname: kafka
+    container_name: kafka
     networks:
       - cira-network
     ports:
@@ -71,8 +72,12 @@ services:
       dockerfile: Dockerfile
     networks:
       - cira-network
+    depends_on:
+      - kafka
 
   factory:
+    container_name: factory
+    hostname: factory
     build:
       context: ./factory
       dockerfile: Dockerfile
@@ -84,6 +89,8 @@ services:
       - kafka
   
   warehouse:
+    container_name: warehouse
+    hostname: warehouse
     build:
       context: ./warehouse
       dockerfile: Dockerfile
@@ -95,6 +102,8 @@ services:
       - kafka
 
   logistics:
+    container_name: logistics
+    hostname: logistics
     build:
       context: ./logistics
       dockerfile: Dockerfile
@@ -106,6 +115,8 @@ services:
       - kafka
 
   machine-01:
+    container_name: machine-01
+    hostname: machine-01
     build:
       context: ./machine-01
       dockerfile: Dockerfile
