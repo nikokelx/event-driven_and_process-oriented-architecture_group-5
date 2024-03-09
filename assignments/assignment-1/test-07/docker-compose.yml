@@ -61,7 +61,3 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: CLIENT
     depends_on:
       - zookeeper
-
-
-
-
