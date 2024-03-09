@@ -19,33 +19,65 @@ Num-records: 10'000'000 \
 record-size: 100 \
 throughput -1 \
 batch.size: 5'000 \
+linger.ms: 0 \
 
 ### Experiment 2
 Num-records: 10'000'000 \
 record-size: 100\
 throughput -1 \
 batch.size: 10'000 \
+linger.ms: 0 \
 
 ### Experiment 3
 Num-records: 10'000'000 \
 record-size: 100 \
 throughput -1 \
 batch.size: 20'000 \
+linger.ms: 0 \
 
 ### Experiment 4
-Num-records: 50'000'000 \
+Num-records: 10'000'000 \
 record-size: 100 \
 throughput -1 \
-batch.size: 50'000 \
+batch.size: 5'000 \
+linger.ms: 5 \
+
+### Experiment 5
+Num-records: 10'000'000 \
+record-size: 100 \
+throughput -1 \
+batch.size: 10'000 \
+linger.ms: 5 \
+
+### Experiment 6
+Num-records: 10'000'000 \
+record-size: 100 \
+throughput -1 \
+batch.size: 20'000 \
+linger.ms: 5 \
+
+### Experiment 7
+Num-records: 10'000'000 \
+record-size: 100 \
+throughput -1 \
+batch.size: 5'000 \
+linger.ms: 10 \
+
+### Experiment 8
+Num-records: 10'000'000 \
+record-size: 100 \
+throughput -1 \
+batch.size: 10'000 \
+linger.ms: 10 \
+
+### Experiment 9
+Num-records: 10'000'000 \
+record-size: 100 \
+throughput -1 \
+batch.size: 20'000 \
+linger.ms: 10 \
 
 ## Conduct the experiment
-![batch-size_5000](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/fe54a469-a742-4596-a171-56f5d785de8f)
-
-![batch-size_10000](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/ac93d9d3-0bca-406b-826c-8bfb1020719f)
-
-![batch-size_20000](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/78088f21-90bc-4771-9bde-2cfc21122e49)
-
-![batch-size_50000](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/d26821ce-daaa-4d5a-be28-dd6fd1aae537)
 
 ## Conclusion
 The experiments show that with increasing batch size the throughput increases. Additionally, the average latency deacreses with increasing batch size. 
