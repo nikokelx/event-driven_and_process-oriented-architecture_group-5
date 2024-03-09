@@ -51,15 +51,20 @@ For this experiment, we use the script kafka-producer-perf-test.sh.
 
 | Experiment | Throughput (records/sec) | avg latency (ms) | max latency (ms)  |
 |------------|--------------------------|------------------|-------------------|
-| 1          |                          |                  |                   |
-| 2          |                          |                  |                   |
-| 3          |                          |                  |                   |
-| 4          |                          |                  |                   |
-| 5          |                          |                  |                   |
-| 6          |                          |                  |                   |
-| 7          |                          |                  |                   |
-| 8          |                          |                  |                   |
-| 9          |                          |                  |                   |
+| 1          | 14.99                    | 1871.38          | 2627              |
+| 2          | 18.51                    | 1509.28          | 2621              |
+| 3          | 19.24                    | 1468.39          | 2705              |
+| 4          | 16.81                    | 1671.24          | 2611              |
+| 5          | 23.52                    | 1185.41          | 2600              |
+| 6          | 33.44                    | 822.38           | 2297              |
+| 7          | 14.42                    | 1940.79          | 3764              |
+| 8          | 18.33                    | 1511.54          | 2420              |
+| 9          | 32.90                    | 848.39           | 2784              |
 
-The experiments show that with increasing batch size the throughput increases. Additionally, the average latency deacreses with increasing batch size. 
+The experiments show that with increasing parameters
+* the throughput increases,
+* the average latency decreases.
+
+The experiment with the best results has the parameters batch.size=20'000 and linger.ms=5.
+
 
