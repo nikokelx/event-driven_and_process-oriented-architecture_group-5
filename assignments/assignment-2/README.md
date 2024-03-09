@@ -38,12 +38,25 @@ to this topic and knows that the machine-01 is available.
 !Sequence Diagram
 
 Instructions: 
+
+1. Send a POST request to the [endpoint "/machine/start"](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/assignment-02/project/machine-01/src/main/java/ch/unisg/machine01/controllers/http/StartMachineWebController.java) to start the machine. 
 ```
 curl    -H '' \
         -d '' \
         -X POST \
         localhost:4000/machine/start/
 ```
+2. The microservice Factory receives the event, and it logs in the terminal that the Machine-01 is available. 
+
+OR
+
+1. Visit the [CiRa-Frontend]().
+2. Click on Button "Start Machine"
+3. See log window
+
+Conclusion:
+
+The Event Notification pattern is implemented. For the moment, the Factory just prints the message.
 
 #### 3. Event-carried state transfer
 
@@ -59,7 +72,7 @@ and keeps track of the data.
 Instructions:
 
 ```
-docker-compose up --build
+
 ```
 
 #### 4. Error scenario
