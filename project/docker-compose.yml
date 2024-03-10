@@ -38,12 +38,11 @@ services:
     image: postgres:alpine
     ports:
       - 5431:5432
-    volumes:
-      - db-factory:/Library/PostgreSQL/15/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=test123!
-      - POSTGRES_DB=factory
+    volumes:
+      - ./factory/factory_db.sql:/docker-entrypoint-initdb.d/factory_db.sql
     networks:
       - cira-network
   
@@ -128,7 +127,6 @@ services:
       - kafka
 
 volumes:
-  db-factory:
   db-warehouse:
 
 networks:

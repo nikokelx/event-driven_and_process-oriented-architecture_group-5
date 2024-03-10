@@ -4,7 +4,6 @@
 
     const startTheMachine = async () => {
 
-        console.log("HALLO????")
         const url = "http://127.0.0.1:4000/machine/start";
 
         const response = await fetch(url, {
@@ -14,6 +13,10 @@
 
             },
         });
+    }
+
+    const startProductionMachine = async () => {
+        const url = "";
     }
 
 </script>
@@ -34,15 +37,10 @@
                     <h2>Machine 01</h2>
                 </div>
 
-                <form class="w3-margin" method="post" action="?/startMachine" use:enhance>
-                    <button class="w3-button w3-hover-gray w3-aqua w3-block">Start Machine</button>
-                </form>
+                <button on:click={() => startTheMachine()} class="w3-button w3-hover-gray w3-aqua w3-block">Start Machine</button>
 
-                <form class="w3-margin" method="post" action="?/startProduction" use:enhance>
-                    <button class="w3-button w3-hover-gray w3-aqua w3-block">Start production of Machine 01</button>
-                </form>
+                <button on:click={() => startProductionMachine()} class="w3-button w3-hover-gray w3-aqua w3-block">Start Production</button>
 
-                <button on:click={() => startTheMachine()} class="w3-button w3-hover-gray w3-aqua w3-block">Start Machine (Without button)</button>
             </div>
 
         </div>
@@ -53,8 +51,8 @@
 
                 <h2>Logs</h2>
 
-                <div class="w3-border" style="height: 800px;">
-                    <p>hsad</p>
+                <div class="w3-border w3-padding" style="height: 800px;">
+
                 </div>
 
             </div>

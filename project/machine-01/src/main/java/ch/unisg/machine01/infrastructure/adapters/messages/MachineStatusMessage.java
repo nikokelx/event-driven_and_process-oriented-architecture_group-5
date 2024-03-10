@@ -17,11 +17,16 @@ public class MachineStatusMessage  implements MachineStatusEventPort {
     @Value("${spring.kafka.topic}")
     private String topic;
 
+    @Value("${spring.kafka.topic-custom-log}")
+    private String topicCustomLog;
+
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public void toggleMachineStatus(Machine.MachineStatus machineStatus) {
+
+        kafkaTemplate.send(topicCustomLog, "Das ist ein Test");
 
         kafkaTemplate.send(topic, machineStatus.getValue().toString());
 
