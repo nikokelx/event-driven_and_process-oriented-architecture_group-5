@@ -11,20 +11,48 @@ public class Machine {
     }
 
     @Getter
+    final MachineId machineId;
+
+    @Setter @Getter
     private MachineStatus machineStatus;
 
     @Setter @Getter
     private  MachineFillLevel machineFillLevel;
 
-    public Machine() {
-        this.machineStatus = new MachineStatus(Status.ACTIVE);
-        this.machineFillLevel = new MachineFillLevel(0);
+    private static final Machine machine = new Machine(
+            new MachineId(0),
+            new MachineStatus(Status.INACTIVE),
+            new MachineFillLevel(0)
+    );
+
+    private Machine(
+            MachineId machineId,
+            MachineStatus machineStatus,
+            MachineFillLevel machineFillLevel
+    ) {
+        this.machineId = machineId;
+        this.machineStatus = machineStatus;
+        this.machineFillLevel = machineFillLevel;
     }
 
-    public boolean toggleStatus() {
-        System.out.println(getMachineStatus().getValue());
-        this.machineStatus = new MachineStatus(Status.INACTIVE);
-        return false;
+    public static Machine getMachine() {
+        return machine;
+    }
+
+    public MachineStatus toggleStatus() {
+
+        if (machine.getMachineStatus().getValue().toString().equals("ACTIVE")) {
+            this.machineStatus = new MachineStatus(Status.INACTIVE);
+        } else {
+            this.machineStatus = new MachineStatus(Status.ACTIVE);
+        }
+
+        return this.machineStatus;
+    }
+
+    @Value
+    public static class MachineId {
+        int value;
     }
 
     @Value

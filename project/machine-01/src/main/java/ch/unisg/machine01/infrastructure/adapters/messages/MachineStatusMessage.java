@@ -26,7 +26,7 @@ public class MachineStatusMessage  implements MachineStatusEventPort {
     @Override
     public void toggleMachineStatus(Machine.MachineStatus machineStatus) {
 
-        kafkaTemplate.send(topicCustomLog, "Das ist ein Test");
+        kafkaTemplate.send(topicCustomLog, "Send Event: Machine Status toggle.");
 
         kafkaTemplate.send(topic, machineStatus.getValue().toString());
 

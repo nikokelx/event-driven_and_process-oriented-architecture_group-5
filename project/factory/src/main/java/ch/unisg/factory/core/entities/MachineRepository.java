@@ -11,7 +11,7 @@ public class MachineRepository {
 
     @Id
     @Column(name = "id")
-    private String machineId;
+    private Integer machineId;
 
     @Column(name = "name")
     private String machineName;
@@ -21,6 +21,9 @@ public class MachineRepository {
 
     @Column(name = "fill_level")
     private int machineFillLevel;
+
+    @Column(name = "capacity")
+    private int capacity;
 
     public String getMachineName() {
         return machineName;

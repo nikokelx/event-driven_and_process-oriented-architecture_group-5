@@ -39,6 +39,17 @@ ALTER TABLE public.machines OWNER TO postgres;
 -- Name: machines machines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
+
+--
+-- Data for Name: machines; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.machines (id, name, status, fill_level, capacity) FROM stdin;
+0	machine-01	f	0	100
+\.
+
+
+
 ALTER TABLE ONLY public.machines
     ADD CONSTRAINT machines_pkey PRIMARY KEY (id);
 
