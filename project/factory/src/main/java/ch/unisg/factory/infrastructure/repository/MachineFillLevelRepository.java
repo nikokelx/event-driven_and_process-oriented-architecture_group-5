@@ -8,11 +8,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface MachineRepositoryAdapter extends JpaRepository<MachineRepository, Integer> {
+public interface MachineFillLevelRepository extends JpaRepository<MachineRepository, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE machines SET status=?2 WHERE id=?1", nativeQuery = true)
-    void setMachineStatusById(Integer id, Boolean status);
-
+    @Query(value = "UPDATE machines SET fill_level=?2 WHERE id=?1", nativeQuery = true)
+    void updateMachineFillLevelById(Integer id, Integer fillLevel);
 }

@@ -15,7 +15,7 @@ public class ToggleMachineWebController {
 
     private final ToggleMachineUseCase toggleMachineUseCase;
 
-    @PostMapping(path = "/machine/toggle")
+    @PostMapping(path = "/machine/status/toggle")
     public ResponseEntity<String> toggleMachine() {
         ToggleMachineCommand command = new ToggleMachineCommand();
 

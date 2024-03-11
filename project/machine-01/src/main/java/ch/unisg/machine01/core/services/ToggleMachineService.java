@@ -17,13 +17,8 @@ public class ToggleMachineService implements ToggleMachineUseCase {
     public Machine.MachineStatus toggleMachine(ToggleMachineCommand command) {
 
         Machine machine = Machine.getMachine();
-        Machine.MachineStatus machineStatus = machine.getMachineStatus();
 
-        System.out.println("Old Machine status: " + machineStatus.getValue().toString());
-
-        machineStatus = machine.toggleStatus();
-
-        System.out.println("New machine status: " + machineStatus.getValue().toString());
+        Machine.MachineStatus machineStatus = machine.toggleStatus();
 
         machineStatusEventPort.toggleMachineStatus(machineStatus);
 

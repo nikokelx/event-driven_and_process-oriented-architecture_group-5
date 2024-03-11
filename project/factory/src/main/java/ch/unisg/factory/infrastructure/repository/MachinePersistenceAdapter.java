@@ -20,7 +20,7 @@ public class MachinePersistenceAdapter implements MachineStatusEventPort {
 
     @Override
     public void toggleMachineStatus(Machine.MachineStatus machineStatus) {
-        
+
         machineRepositoryAdapter.setMachineStatusById(0, machineStatus.getValue());
 
     }
