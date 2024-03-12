@@ -16,5 +16,7 @@ public class MachineFillLevelAdapter implements MachineFillLevelEventPort {
     @Override
     public void updateMachineFillLevelEvent(Machine.MachineFillLevel machineFillLevel){
 
+        machineFillLevelRepository.updateMachineFillLevelById(0, machineFillLevel.getValue());
+
     }
 }

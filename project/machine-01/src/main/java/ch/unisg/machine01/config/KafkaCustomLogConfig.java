@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Primary
 @RequiredArgsConstructor
 public class KafkaCustomLogConfig {
+
     @Value("${spring.kafka.topic-custom-log}")
     private String topic;
 

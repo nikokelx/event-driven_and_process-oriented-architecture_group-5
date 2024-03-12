@@ -21,9 +21,6 @@ public class MachineStatusEventListener {
 
      */
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-
     private final ToggleMachineStatusUseCase toggleMachineStatusUseCase;
 
     @KafkaListener(topics = "machineStatus", containerFactory = "kafkaListenerStringFactory")

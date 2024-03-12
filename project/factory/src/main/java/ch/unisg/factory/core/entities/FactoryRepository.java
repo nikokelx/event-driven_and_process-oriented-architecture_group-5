@@ -11,12 +11,15 @@ public class FactoryRepository {
 
     @Id
     @Column(name = "id")
-    private String factoryId;
+    private Integer factoryId;
+
+    @Column(name = "name")
+    private String factoryName;
 
     @Column(name = "inventory_level")
-    private String inventory_level;
+    private Integer inventory_level;
 
-    public String getInventoryLevel() {
+    public Integer getInventoryLevel() {
         return inventory_level;
     }
 }

@@ -17,17 +17,11 @@ public class MachineFillLevelEventListener {
     public void consumeFillLevel(String message) {
 
         System.out.println(message);
-        /*
-
-        DEBUG
 
         Machine.MachineFillLevel machineFillLevel = new Machine.MachineFillLevel(Integer.valueOf(message));
         UpdateMachineFillLevelCommand command = new UpdateMachineFillLevelCommand(machineFillLevel);
 
         updateMachineFillLevelUseCase.updateMachineFillLevel(command);
-
-        */
-
 
     }
 }

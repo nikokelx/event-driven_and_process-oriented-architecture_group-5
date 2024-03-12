@@ -13,10 +13,10 @@ public class ToggleMachineService implements ToggleMachineUseCase {
 
     private final MachineStatusEventPort machineStatusEventPort;
 
+    Machine machine = Machine.getMachine();
+
     @Override
     public Machine.MachineStatus toggleMachine(ToggleMachineCommand command) {
-
-        Machine machine = Machine.getMachine();
 
         Machine.MachineStatus machineStatus = machine.toggleStatus();
 
