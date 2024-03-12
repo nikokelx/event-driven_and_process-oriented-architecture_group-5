@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PublishFactoryInventoryLevelMessage implements PublishFactoryInventoryLevelPort {
 
-    @Value("${spring.kafka.topic-factory-inventory-level}")
+    @Value("${spring.kafka.topic-inv_level}")
     private String topic;
 
     @Autowired
