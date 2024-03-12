@@ -54,7 +54,7 @@ services:
     ports:
       - 5433:5432
     volumes:
-      - db-warehouse:/Library/PostgreSQL/15/data
+      - ./warehouse/warehouse_db.sql:/docker-entrypoint-initdb.d/warehouse_db.sql
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=test123!

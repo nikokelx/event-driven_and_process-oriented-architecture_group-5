@@ -21,37 +21,33 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: machines; Type: TABLE; Schema: public; Owner: postgres
+-- Name: factory; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.machines (
+CREATE TABLE public.factory (
     id integer NOT NULL,
     name character varying(255),
-    status boolean,
-    fill_level integer,
-    capacity integer
+    inventory_level integer
 );
 
 
-ALTER TABLE public.machines OWNER TO postgres;
+ALTER TABLE public.factory OWNER TO postgres;
 
 --
--- Name: machines machines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Data for Name: factory; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
---
--- Data for Name: machines; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.machines (id, name, status, fill_level, capacity) FROM stdin;
-0	machine-01	f	0	100
+COPY public.factory (id, name, inventory_level) FROM stdin;
+0	cira-factory	0
 \.
 
 
+--
+-- Name: factory factory_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
 
-ALTER TABLE ONLY public.machines
-    ADD CONSTRAINT machines_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.factory
+    ADD CONSTRAINT factory_pkey PRIMARY KEY (id);
 
 
 --

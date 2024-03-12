@@ -1,4 +1,4 @@
-package ch.unisg.warehouse.controller;
+package ch.unisg.warehouse.controllers;
 
 import ch.unisg.warehouse.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
