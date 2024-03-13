@@ -76,33 +76,60 @@ curl    -H '' \
         -X POST \
         http://localhost:4000/machine/production/toggle
 ```
+2. Log into the kafka container.
 
-2. Consume the fill level of machine 01
 ```
 docker exec -it kafka bash
 ```
+
+3. Consume the fill level of machine 01.
 
 ```
 cd /opt/bitnami/kafka/bin/  &&
 ./kafka-console-consumer.sh --topic machine-fill-level --bootstrap-server kafka:9092
 ```
 
-3. Consume the inventory level of factory
-
+4. Consume the inventory level of factory.
+ 
+```
+cd /opt/bitnami/kafka/bin/  &&
+./kafka-console-consumer.sh --topic factory-inventory-level --bootstrap-server kafka:9092
 ```
 
-```
-
-4. Query the inventory level in the microservice factory
+5. Open a new terminal and log in to the db_factory container.
 
 ```
-
+docker exec -it db_factory bash
 ```
 
-5. Query the inventory level in the microservice warehouse
+6. Log in to the factory database
 
 ```
+psql -U postgres -d factory_db
+```
 
+7. Open a new terminal and log in to the db_warehouse container.
+
+```
+docker exec -it db_warehouse
+```
+
+8. Log in to the warehouse databse
+
+```
+psql -U postgres -d warehouse_db
+```
+
+9. Query the inventory level in the microservice factory
+
+```
+SELECT * FROM factory;
+```
+
+10. Query the inventory level in the microservice warehouse
+
+```
+SELECT * FROM factory;
 ```
 
 Conclusion:
