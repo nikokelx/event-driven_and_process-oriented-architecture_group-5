@@ -78,9 +78,11 @@ curl    -H '' \
 ```
 
 2. Consume the fill level of machine 01
+```
+docker exec -it kafka bash
+```
 
 ```
-docker exec -it kafka bash  &&
 cd /opt/bitnami/kafka/bin/  &&
 ./kafka-console-consumer.sh --topic machine-fill-level --bootstrap-server kafka:9092
 ```
