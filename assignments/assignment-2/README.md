@@ -39,20 +39,15 @@ to this topic and knows that the machine-01 is available.
 
 Instructions: 
 
-1. Send a POST request to the [endpoint "/machine/start"](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/assignment-02/project/machine-01/src/main/java/ch/unisg/machine01/controllers/http/StartMachineWebController.java) to start the machine. 
+1. Send a POST request to the [endpoint "/machine/status/toggle"](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/machine-01/src/main/java/ch/unisg/machine01/controllers/http/ToggleMachineWebController.java) to start the machine. 
+
 ```
 curl    -H '' \
         -d '' \
         -X POST \
-        localhost:4000/machine/start/
+        http://127.0.0.1:4000/machine/status/toggle
 ```
-2. The microservice Factory receives the event, and it logs in the terminal that the Machine-01 is available. 
-
-OR
-
-1. Visit the [CiRa-Frontend]().
-2. Click on Button "Start Machine"
-3. See log window
+2. The microservice Factory [receives the event](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/controllers/event/MachineStatusEventListener.java), and it logs in the terminal that the Machine-01 is available. 
 
 Conclusion:
 
@@ -71,13 +66,32 @@ and keeps track of the data.
 
 Instructions:
 
-1. 
+1. Send a POST request to the [endpoint "/machine/production/toggle"](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/machine-01/src/main/java/ch/unisg/machine01/controllers/http/ToggleProductionWebController.java) to start the production of wood shavings. 
 
+```
+curl    -H '' \
+        -d '' \
+        -X POST \
+        http://localhost:4000/machine/production/toggle
+```
+2. Consume the fill level of machine 01
 ```
 
 ```
+3. Consume the inventory level of factory
+```
+
+```
+4. Query the inventory level in the microservice factory
+```
+
+```
+
+5. Query the inventory level in the microservice warehouse
+```
+
+``
 
 Conclusion:
 
-
-#### 4. Error scenario
+The Event-carried state transfer is implemented. The microservices factory and warehouse communicates over Kafka, saving the inventory level of the factory in their own and separate databases. 

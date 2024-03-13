@@ -1,7 +1,12 @@
 # event-driven_and_process-oriented-architecture_group-5
 
 ## Tutorial to run the application CiRa
-1. ...
+1. Go to the path /project/.
+
+2. Execute the command:
+```
+docker-compose up --build
+```
 
 ## Architectural Decision Records
 * [Architecture/Decisions](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/doc/architecture/decisions)
@@ -12,9 +17,8 @@
 * [Assignment 03](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-3)
 
 ## Microservices
-* [Frontend](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/cira-frontend)
 * [Factory](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/factory)
 * [Warehouse](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/warehouse)
 * [Logistics](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/logistics)
 * [Machine-01](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/machine-01)
-
+* [Frontend](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/cira-frontend)
