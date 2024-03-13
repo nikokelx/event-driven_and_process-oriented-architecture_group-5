@@ -21,6 +21,7 @@ For assignment 1, we implemented ...
 * Microservice [Warehouse](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/warehouse)
 
 Instruction to start the project:
+
 ```
 docker-compose up --build
 ```
@@ -47,6 +48,7 @@ curl    -H '' \
         -X POST \
         http://127.0.0.1:4000/machine/status/toggle
 ```
+
 2. The microservice Factory [receives the event](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/controllers/event/MachineStatusEventListener.java), and it logs in the terminal that the Machine-01 is available. 
 
 Conclusion:
@@ -59,8 +61,8 @@ The microservice Factory [saves the current inventory level](https://github.com/
 of the goods. 
 If a certain amount of wood shavings is in the inventory, the microservice [emits an event](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/infrastructure/adapters/messages/FactoryInventoryLevelEvent.java)
 to the topic "factory-inventory-level". 
-The microservice Warehouse [listens](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/warehouse/src/main/java/ch/unisg/warehouse/service/ConsumerService.java)
-listen to this topic, and it keeps track of the data.
+The microservice Warehouse [listens](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/warehouse/src/main/java/ch/unisg/warehouse/service/ConsumerService.java) 
+to this topic. After receiving new inventory level, the warehouse saves the new information to its database.
 
 !Sequence Diagram
 
@@ -74,23 +76,32 @@ curl    -H '' \
         -X POST \
         http://localhost:4000/machine/production/toggle
 ```
+
 2. Consume the fill level of machine 01
-```
 
 ```
+docker exec -it kafka bash  &&
+cd /opt/bitnami/kafka/bin/  &&
+./kafka-console-consumer.sh --topic machine-fill-level --bootstrap-server kafka:9092
+```
+
 3. Consume the inventory level of factory
+
 ```
 
 ```
+
 4. Query the inventory level in the microservice factory
+
 ```
 
 ```
 
 5. Query the inventory level in the microservice warehouse
+
 ```
 
-``
+```
 
 Conclusion:
 
