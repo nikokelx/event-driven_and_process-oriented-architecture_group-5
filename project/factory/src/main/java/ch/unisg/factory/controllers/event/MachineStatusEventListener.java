@@ -23,7 +23,7 @@ public class MachineStatusEventListener {
 
     private final ToggleMachineStatusUseCase toggleMachineStatusUseCase;
 
-    @KafkaListener(topics = "machineStatus", containerFactory = "kafkaListenerStringFactory")
+    @KafkaListener(topics = "machine-status", containerFactory = "kafkaListenerStringFactory")
     public void consumeMessage(String message) {
         // kafkaTemplate.send(topicCustomLog, "Receive Event: Machine Status toggle.");
 

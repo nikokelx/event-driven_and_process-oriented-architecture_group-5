@@ -20,6 +20,12 @@ public class ToggleMachineService implements ToggleMachineUseCase {
 
         Machine.MachineStatus machineStatus = machine.toggleStatus();
 
+        if ("ACTIVE".equals(machineStatus.getValue().toString())) {
+            System.out.println("Machine is on.");
+        } else {
+            System.out.println("Machine is off");
+        }
+
         machineStatusEventPort.toggleMachineStatus(machineStatus);
 
         return machineStatus;
