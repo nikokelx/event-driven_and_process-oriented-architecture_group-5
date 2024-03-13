@@ -57,10 +57,10 @@ The Event Notification pattern is implemented. For the moment, the Factory just 
 
 The microservice Factory [saves the current inventory level](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/infrastructure/repository/MachinePersistenceAdapter.java)
 of the goods. 
-If a certain amount of wood shavings is in stock, the microservice [emits an event](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/infrastructure/adapters/messages/FactoryInventoryLevelEvent.java)
-to the topic "stock-update." 
+If a certain amount of wood shavings is in the inventory, the microservice [emits an event](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/infrastructure/adapters/messages/FactoryInventoryLevelEvent.java)
+to the topic "factory-inventory-level". 
 The microservice Warehouse [listens](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/warehouse/src/main/java/ch/unisg/warehouse/service/ConsumerService.java)
-and keeps track of the data.
+listen to this topic, and it keeps track of the data.
 
 !Sequence Diagram
 
