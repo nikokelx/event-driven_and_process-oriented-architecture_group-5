@@ -3,23 +3,13 @@ package ch.unisg.factory.controllers.event;
 import ch.unisg.factory.core.entities.Machine;
 import ch.unisg.factory.core.ports.in.ToggleMachineStatusCommand;
 import ch.unisg.factory.core.ports.in.ToggleMachineStatusUseCase;
-import ch.unisg.factory.infrastructure.repository.MachineRepositoryAdapter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class MachineStatusEventListener {
-    /*
-    @Value("${spring.kafka.topic-custom-log}")
-    private String topicCustomLog;
-
-     */
 
     private final ToggleMachineStatusUseCase toggleMachineStatusUseCase;
 

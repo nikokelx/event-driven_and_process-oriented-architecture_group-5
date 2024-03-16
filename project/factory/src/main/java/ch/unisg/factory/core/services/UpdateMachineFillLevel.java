@@ -5,9 +5,7 @@ import ch.unisg.factory.core.entities.Machine;
 import ch.unisg.factory.core.ports.in.UpdateMachineFillLevelCommand;
 import ch.unisg.factory.core.ports.in.UpdateMachineFillLevelUseCase;
 import ch.unisg.factory.core.ports.out.CollectMachineFillLevelPort;
-import ch.unisg.factory.core.ports.out.MachineFillLevelEventPort;
 import ch.unisg.factory.core.ports.out.PublishFactoryInventoryLevelPort;
-import ch.unisg.factory.core.ports.out.SaveFactoryInventoryLevelPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +13,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
-    private final MachineFillLevelEventPort machineFillLevelEventPort;
-
     private final CollectMachineFillLevelPort collectMachineFillLevelPort;
 
-    private final SaveFactoryInventoryLevelPort saveFactoryInventoryLevelPort;
 
     private final PublishFactoryInventoryLevelPort publishFactoryInventoryLevelPort;
 
@@ -34,15 +29,10 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
             int fillLevel = collectMachineFillLevelPort.collectMachineFillLevel();
             Factory.FactoryInventoryLevel factoryInventoryLevel = new Factory.FactoryInventoryLevel(fillLevel);
 
-            // Put goods in the inventory
-            saveFactoryInventoryLevelPort.saveFactoryInventoryLevel(factoryInventoryLevel);
-
             // Emit event
             publishFactoryInventoryLevelPort.publishFactorcyInventoryLevel(factoryInventoryLevel);
 
         }
-
-        machineFillLevelEventPort.updateMachineFillLevelEvent(command.getMachineFillLevel());
 
     }
 

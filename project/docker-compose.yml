@@ -32,36 +32,6 @@ services:
     depends_on:
       - zookeeper
   
-  database-factory:
-    container_name: db_factory
-    hostname: db_factory
-    image: postgres:alpine
-    ports:
-      - 5431:5432
-    environment:
-      - POSTGRES_DB=factory_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=test123!
-    volumes:
-      - ./factory/factory_db.sql:/docker-entrypoint-initdb.d/factory_db.sql
-    networks:
-      - cira-network
-  
-  database-warehouse:
-    container_name: db_warehouse
-    hostname: db_warehouse
-    image: postgres:alpine
-    ports:
-      - 5433:5432
-    volumes:
-      - ./warehouse/warehouse_db.sql:/docker-entrypoint-initdb.d/warehouse_db.sql
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=test123!
-      - POSTGRES_DB=warehouse
-    networks:
-      - cira-network
-  
   cira-frontend:
     container_name: dashboard
     hostname: dashboard
@@ -126,9 +96,6 @@ services:
       - cira-network
     depends_on:
       - kafka
-
-volumes:
-  db-warehouse:
 
 networks:
   cira-network:
