@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0gl3u4z" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.20.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:collaboration id="Collaboration_1as3a18">
+    <bpmn:extensionElements />
+    <bpmn:participant id="Participant_060wk0t" name="Factory" processRef="StartProductionLineProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="StartProductionLineProcess" name="Start Production Line" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:laneSet id="LaneSet_0rvxpmj" />
+    <bpmn:startEvent id="start-event-start-production-line" name="Start the production line of CiRa Company">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_0j32i9d</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0j32i9d" sourceRef="start-event-start-production-line" targetRef="start-production-line" />
+    <bpmn:sequenceFlow id="endEventStartProductionLine" sourceRef="start-production-line" targetRef="exclusive-gateway-machine-status" />
+    <bpmn:userTask id="start-production-line" name="Start production line">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${StartProductionLine}" event="end" />
+        <camunda:formData>
+          <camunda:formField id="machineStatusId" label="Machine Status" type="boolean" defaultValue="false">
+            <camunda:validation />
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0j32i9d</bpmn:incoming>
+      <bpmn:outgoing>endEventStartProductionLine</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="exclusive-gateway-machine-status">
+      <bpmn:extensionElements />
+      <bpmn:incoming>endEventStartProductionLine</bpmn:incoming>
+      <bpmn:outgoing>SequenceMachineStatusOn</bpmn:outgoing>
+      <bpmn:outgoing>SequenceMachineStatusOff</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceMachineStatusOn" name="Machine is on" sourceRef="exclusive-gateway-machine-status" targetRef="toggle-production">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${machineStatus}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="toggle-production" name="Start Production" camunda:delegateExpression="${ToggleMachineProduction}">
+      <bpmn:incoming>SequenceMachineStatusOn</bpmn:incoming>
+      <bpmn:incoming>Flow_115tm0i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lauuk1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1lauuk1" sourceRef="toggle-production" targetRef="stop-event-start-production-line" />
+    <bpmn:sequenceFlow id="SequenceMachineStatusOff" name="Machine is off" sourceRef="exclusive-gateway-machine-status" targetRef="toggle-machine-status">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!machineStatus}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="toggle-machine-status" name="Toggle Machine Status" camunda:delegateExpression="${ToggleMachineStatus}">
+      <bpmn:extensionElements />
+      <bpmn:incoming>SequenceMachineStatusOff</bpmn:incoming>
+      <bpmn:outgoing>Flow_0h8vued</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0h8vued" sourceRef="toggle-machine-status" targetRef="Event_12o8m1p" />
+    <bpmn:endEvent id="stop-event-start-production-line" name="End the production line of CiRa Company">
+      <bpmn:incoming>Flow_1lauuk1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_115tm0i" sourceRef="Event_12o8m1p" targetRef="toggle-production" />
+    <bpmn:intermediateCatchEvent id="Event_12o8m1p">
+      <bpmn:incoming>Flow_0h8vued</bpmn:incoming>
+      <bpmn:outgoing>Flow_115tm0i</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1mn08cg">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT15S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1as3a18">
+      <bpmndi:BPMNShape id="Participant_060wk0t_di" bpmnElement="Participant_060wk0t" isHorizontal="true">
+        <dc:Bounds x="130" y="80" width="810" height="390" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="start-event-start-production-line">
+        <dc:Bounds x="222" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="197" y="295" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bejbzl_di" bpmnElement="start-production-line">
+        <dc:Bounds x="330" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0868xe0_di" bpmnElement="exclusive-gateway-machine-status" isMarkerVisible="true">
+        <dc:Bounds x="485" y="245" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17za0hb_di" bpmnElement="toggle-production">
+        <dc:Bounds x="600" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17kq105_di" bpmnElement="toggle-machine-status">
+        <dc:Bounds x="600" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qgyu51_di" bpmnElement="stop-event-start-production-line">
+        <dc:Bounds x="832" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="807" y="175" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1wh40fz_di" bpmnElement="Event_12o8m1p">
+        <dc:Bounds x="632" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0j32i9d_di" bpmnElement="Flow_0j32i9d">
+        <di:waypoint x="258" y="270" />
+        <di:waypoint x="330" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1grqhbh_di" bpmnElement="endEventStartProductionLine">
+        <di:waypoint x="430" y="270" />
+        <di:waypoint x="485" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j1ij9w_di" bpmnElement="SequenceMachineStatusOn" bioc:stroke="#205022" color:border-color="#205022">
+        <di:waypoint x="510" y="245" />
+        <di:waypoint x="510" y="150" />
+        <di:waypoint x="600" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="526" y="186" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lauuk1_di" bpmnElement="Flow_1lauuk1">
+        <di:waypoint x="700" y="150" />
+        <di:waypoint x="832" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15apkbh_di" bpmnElement="SequenceMachineStatusOff" bioc:stroke="#831311" color:border-color="#831311">
+        <di:waypoint x="510" y="295" />
+        <di:waypoint x="510" y="370" />
+        <di:waypoint x="600" y="370" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="525" y="330" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h8vued_di" bpmnElement="Flow_0h8vued">
+        <di:waypoint x="650" y="330" />
+        <di:waypoint x="650" y="278" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_115tm0i_di" bpmnElement="Flow_115tm0i">
+        <di:waypoint x="650" y="242" />
+        <di:waypoint x="650" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

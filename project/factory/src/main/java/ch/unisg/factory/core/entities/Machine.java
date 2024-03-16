@@ -18,17 +18,28 @@ public class Machine {
     @Getter @Setter
     private MachineFillLevel machineFillLevel;
 
+    private static final Machine machine = new Machine(
+            new MachineId("machine-01"),
+            new MachineName("Machine 01"),
+            new MachineStatus(false),
+            new MachineFillLevel(0)
+    );
+
 
     private Machine(
             Machine.MachineId machineId,
             Machine.MachineName machineName,
             Machine.MachineStatus machineStatus,
-            Machine.MachineFillLevel machineInventoryLevel
+            Machine.MachineFillLevel machineFillLevel
     ) {
         this.machineId = machineId;
         this.machineName = machineName;
         this.machineStatus = machineStatus;
         this.machineFillLevel = machineFillLevel;
+    }
+
+    public static Machine getMachine() {
+        return machine;
     }
 
     public static Machine addMachine(

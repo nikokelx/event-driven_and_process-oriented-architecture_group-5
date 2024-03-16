@@ -31,7 +31,19 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
-  
+
+  camunda:
+    image: "camunda/camunda-bpm-platform:run-latest"
+    hostname: camunda
+    volumes:
+      - ./../bpmn/startProductionLine.bpmn:/configuration/resources/startProductionLine.bpmn
+    ports:
+      - 8085:8080
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
+
   cira-frontend:
     container_name: dashboard
     hostname: dashboard
@@ -53,6 +65,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+      - "8081:8080"
     networks:
       - cira-network
     depends_on:
