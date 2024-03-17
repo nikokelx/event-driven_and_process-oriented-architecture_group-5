@@ -1,22 +1,32 @@
 package ch.unisg.factory.core.entities;
 
 import lombok.Getter;
-import lombok.Setter;
-import lombok.Value;
 
 public class Factory {
 
-    @Getter @Setter
-    private FactoryInventoryLevel factoryInventoryLevel;
+    @Getter
+    private InventoryLevel inventoryLevel;
 
-    public Factory(
-            Factory.FactoryInventoryLevel factoryInventoryLevel
-    ) {
-        this.factoryInventoryLevel = factoryInventoryLevel;
+    //Note:--> using the Singleton pattern here to make lives easy
+    @Getter
+    private static final Factory factory = new Factory();
+
+    private Factory() {
+        this.inventoryLevel = new InventoryLevel(0);
     }
 
-    @Value
-    public static class FactoryInventoryLevel {
-        int value;
+    public void increaseInventoryLevel(int value) {
+        var currentInventoryLevel = inventoryLevel.value();
+        inventoryLevel = new InventoryLevel(currentInventoryLevel + value);
+        System.out.println("Increased inventory level from { " + currentInventoryLevel + " } to { " + inventoryLevel.value() + " }");
     }
+
+    public void decreaseInventoryLevel(int value) {
+        var currentInventoryLevel = inventoryLevel.value();
+        var decreasedInventoryLevel = currentInventoryLevel - value;
+        inventoryLevel = new InventoryLevel(decreasedInventoryLevel);
+        System.out.println("Decreased inventory level from { " + currentInventoryLevel + " } to { " + decreasedInventoryLevel + " }");
+    }
+
+    public record InventoryLevel(int value) { }
 }

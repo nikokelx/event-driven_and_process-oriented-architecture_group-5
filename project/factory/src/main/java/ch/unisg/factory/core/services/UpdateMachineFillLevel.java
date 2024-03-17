@@ -22,15 +22,17 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
     @Override
     public void updateMachineFillLevel(UpdateMachineFillLevelCommand command) {
+        Factory factory = Factory.getFactory();
 
         if (command.getMachineFillLevel().getValue() >= 10) {
 
             // Get goods from the machine
             int fillLevel = collectMachineFillLevelPort.collectMachineFillLevel();
-            Factory.FactoryInventoryLevel factoryInventoryLevel = new Factory.FactoryInventoryLevel(fillLevel);
+            factory.increaseInventoryLevel(fillLevel);
+            // TO DELETE: Factory.FactoryInventoryLevel factoryInventoryLevel = new Factory.FactoryInventoryLevel(fillLevel);
 
             // Emit event
-            publishFactoryInventoryLevelPort.publishFactorcyInventoryLevel(factoryInventoryLevel);
+            publishFactoryInventoryLevelPort.publishFactoryInventoryLevel(factory.getInventoryLevel());
 
         }
 

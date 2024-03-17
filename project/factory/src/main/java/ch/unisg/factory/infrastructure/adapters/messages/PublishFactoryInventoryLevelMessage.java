@@ -21,7 +21,8 @@ public class PublishFactoryInventoryLevelMessage implements PublishFactoryInvent
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
-    public void publishFactorcyInventoryLevel(Factory.FactoryInventoryLevel factoryInventoryLevel) {
-        kafkaTemplate.send(topic, String.valueOf(factoryInventoryLevel.getValue()));
+    public void publishFactoryInventoryLevel(Factory.InventoryLevel factoryInventoryLevel) {
+        Factory factory = Factory.getFactory();
+        kafkaTemplate.send(topic, String.valueOf(factory.getInventoryLevel().value()));
     }
 }
