@@ -42,7 +42,7 @@
     <bpmn:sequenceFlow id="SequenceMachineStatusOff" name="Machine is off" sourceRef="exclusive-gateway-machine-status" targetRef="toggle-machine-status">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!machineStatus}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="toggle-machine-status" name="Toggle Machine Status" camunda:delegateExpression="${ToggleMachineStatus}">
+    <bpmn:serviceTask id="toggle-machine-status" name="Toggle Machine Status" camunda:type="external" camunda:topic="toggleMachine">
       <bpmn:extensionElements />
       <bpmn:incoming>SequenceMachineStatusOff</bpmn:incoming>
       <bpmn:outgoing>Flow_0h8vued</bpmn:outgoing>
