@@ -8,12 +8,9 @@ import lombok.Value;
 public class UpdateFactoryInventoryLevelCommand {
 
     @NonNull
-    private final Factory.FactoryInventoryLevel factoryInventoryLevel;
+    private final Factory.InventoryLevel factoryInventoryLevel;
 
-    public UpdateFactoryInventoryLevelCommand(
-            Factory.FactoryInventoryLevel factoryInventoryLevel
-    ) {
+    public UpdateFactoryInventoryLevelCommand(Factory.InventoryLevel factoryInventoryLevel) {
         this.factoryInventoryLevel = factoryInventoryLevel;
     }
-
 }

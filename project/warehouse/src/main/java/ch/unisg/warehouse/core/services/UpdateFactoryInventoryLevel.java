@@ -1,18 +1,15 @@
 package ch.unisg.warehouse.core.services;
 
+import ch.unisg.warehouse.core.entities.Factory;
 import ch.unisg.warehouse.core.ports.in.UpdateFactoryInventoryLevelCommand;
 import ch.unisg.warehouse.core.ports.in.UpdateFactoryInventoryLevelUseCase;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-@RequiredArgsConstructor
+@Service("UpdateFactoryInventoryLevel")
 public class UpdateFactoryInventoryLevel implements UpdateFactoryInventoryLevelUseCase {
-
     @Override
     public void updateFactoryInventoryLevel(UpdateFactoryInventoryLevelCommand command) {
-
-        System.out.println(command.getFactoryInventoryLevel().getValue());
-
+        Factory factory = Factory.getFactory();
+        factory.setInventoryLevel(command.getFactoryInventoryLevel());
     }
 }
