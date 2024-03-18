@@ -10,6 +10,6 @@ public class UpdateFactoryInventoryLevel implements UpdateFactoryInventoryLevelU
     @Override
     public void updateFactoryInventoryLevel(UpdateFactoryInventoryLevelCommand command) {
         Factory factory = Factory.getFactory();
-        factory.increaseInventoryLevel(command.getFactoryInventoryLevel().value());
+        factory.setInventoryLevel(command.getFactoryInventoryLevel());
     }
 }

@@ -1,10 +1,11 @@
 package ch.unisg.warehouse.core.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Factory {
 
-    @Getter
+    @Getter @Setter
     private InventoryLevel inventoryLevel;
 
     //Note:--> using the Singleton pattern here to make lives easy
