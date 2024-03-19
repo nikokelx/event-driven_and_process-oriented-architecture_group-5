@@ -24,7 +24,8 @@ Send a request to factory starting the "Start Production Line" process.
 CURL -X POST http://localhost:3000/factory/start-production-line -d ""
 ````
 
-IMG
+
+<img width="1100" alt="start-the-production-line-process" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/e99efdde-ca7b-42ad-990c-dce21e802eb1">
 
 Description and links
 
