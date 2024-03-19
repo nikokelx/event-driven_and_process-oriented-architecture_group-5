@@ -5,7 +5,7 @@
 
 1. Instructions
 2. BPMN process within the factory
-3. BPMN process within the warehouse
+3. BPMN process to transfer goods
 4. Contribution
 
 #### Instructions
@@ -16,7 +16,7 @@
 docker-compose up --build
 ```
 3. Open the camunda platform http://localhost:3000
-4. Log in with the credentials: username=demo && password=demo
+4. Log in with the credentials: `username=demo` && `password=demo`
 
 #### BPMN process within the factory
 
@@ -36,7 +36,23 @@ to activate it, which in turn emits an event. The Factory listens to this [topic
 After that, another [command](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/blob/main/project/factory/src/main/java/ch/unisg/factory/infrastructure/adapters/http/ToggleMachineProductionWebAdapter.java) is sent to the machine, and it begins the production of wood shavings.
 The process ends with the intention of starting the CiRa production line.
 
-#### BPMN process within the warehouse
+#### BPMN process to transfer goods
+
+This process takes care of the transfer of goods request initiated in `Factory` microservice. This process implements distributed responsibilities to avoid **Process Monolith**.
+While developing this process we tried to find a good balance between `Choreography` implementing events and `Orchestration` implementing commands.<br>
+Since deciding on whether to use **Events** or **Commands** require answering the `Is it OK with the component emitting an event if that event is ignored?` question, we did it and ended up with the main process looking as follows:
+![img.png](img.png)
+
+
+And divisions to bounded contexts to distribute responsibilities and achieve a level of isolation:
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
+
+![img_3.png](img_3.png)
+
+So far we have not implemented all of the bounded contexts but the first step of scheduling the transfer (command and event) plus the process within the logistics service is complete.
+
 
 #### Contribution
 
