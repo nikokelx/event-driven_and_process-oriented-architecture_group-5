@@ -18,6 +18,8 @@ public class CiraMessageSender {
 
     @Value( "${spring.kafka.topic-cira-production}")
     public String topicName;
+    public static final String TOPIC_NAME = "cira-production";
+
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
