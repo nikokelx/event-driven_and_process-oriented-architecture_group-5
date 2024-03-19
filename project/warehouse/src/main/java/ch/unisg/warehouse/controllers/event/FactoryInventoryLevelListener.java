@@ -19,8 +19,5 @@ public class FactoryInventoryLevelListener {
 
         UpdateFactoryInventoryLevelCommand command = new UpdateFactoryInventoryLevelCommand(factoryInventoryLevel);
         updateFactoryInventoryLevelUseCase.updateFactoryInventoryLevel(command);
-
-        // TODO:
-        // validate the stock level and react to it (logistics)
     }
 }

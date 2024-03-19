@@ -12,7 +12,7 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0j32i9d" sourceRef="start-event-start-production-line" targetRef="start-production-line" />
     <bpmn:sequenceFlow id="endEventStartProductionLine" sourceRef="start-production-line" targetRef="exclusive-gateway-machine-status" />
-    <bpmn:userTask id="start-production-line" name="Start production line">
+    <bpmn:userTask id="start-production-line" name="Start production line" camunda:assignee="demo">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${StartProductionLine}" event="end" />
         <camunda:formData>
