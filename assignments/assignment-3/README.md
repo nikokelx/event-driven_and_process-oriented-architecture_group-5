@@ -1,7 +1,3 @@
 # Assignment 03: Process Orchestration with Camunda
-## Michal Cislo & Raffael Rot
 
-### Table of Content
-
-1. Camunda Process
-2. 
+We combine the assignments, therefore, please see [Assignment 04](ven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-4).
