@@ -15,11 +15,7 @@
     <bpmn:userTask id="start-production-line" name="Start production line">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${StartProductionLine}" event="end" />
-        <camunda:formData>
-          <camunda:formField id="machineStatusId" label="Machine Status" type="boolean" defaultValue="false">
-            <camunda:validation />
-          </camunda:formField>
-        </camunda:formData>
+        <camunda:formData />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0j32i9d</bpmn:incoming>
       <bpmn:outgoing>endEventStartProductionLine</bpmn:outgoing>
@@ -48,7 +44,7 @@
       <bpmn:outgoing>Flow_0h8vued</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0h8vued" sourceRef="toggle-machine-status" targetRef="Event_12o8m1p" />
-    <bpmn:endEvent id="stop-event-start-production-line" name="End the production line of CiRa Company">
+    <bpmn:endEvent id="stop-event-start-production-line" name="The production line of CiRa Company started">
       <bpmn:incoming>Flow_1lauuk1</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_115tm0i" sourceRef="Event_12o8m1p" targetRef="toggle-production" />
@@ -89,7 +85,7 @@
       <bpmndi:BPMNShape id="Event_1qgyu51_di" bpmnElement="stop-event-start-production-line">
         <dc:Bounds x="832" y="132" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="807" y="175" width="87" height="40" />
+          <dc:Bounds x="809" y="175" width="84" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1wh40fz_di" bpmnElement="Event_12o8m1p">
