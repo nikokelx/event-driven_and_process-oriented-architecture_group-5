@@ -29,8 +29,6 @@ public class MessageListener {
         Message<TransferScheduledEventPayload> message = objectMapper.readValue(messagePayloadJson, new TypeReference<>() {});
         TransferScheduledEventPayload scheduleTransferCommand = message.getData();
 
-        System.out.println("Scheduling the transfer for " + scheduleTransferCommand.getRefId() + " with corr msg: { "  + message.getCorrelationid() + " }");
-
         runtimeService.createMessageCorrelation(message.getType())
                 .processInstanceBusinessKey(message.getTraceid())
                 .setVariable("refId", scheduleTransferCommand.getRefId())
