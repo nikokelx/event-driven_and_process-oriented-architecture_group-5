@@ -11,5 +11,6 @@ public class UpdateFactoryInventoryLevel implements UpdateFactoryInventoryLevelU
     public void updateFactoryInventoryLevel(UpdateFactoryInventoryLevelCommand command) {
         Factory factory = Factory.getFactory();
         factory.setInventoryLevel(command.getFactoryInventoryLevel());
+        System.out.println("Warehouse -> Updated inventory level to { " + command.getFactoryInventoryLevel() + " }");
     }
 }
