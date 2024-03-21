@@ -46,7 +46,7 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
                 Map<String, Object> variables = new HashMap<>();
                 variables.put("transferOfGoodsRequestId", transferRequest.getId().value());
                 runtimeService.startProcessInstanceByKey(
-                        "TransferGoodsRequestProcess",
+                        "TransferGoodsRequestCompleteProcess",
                         transferRequest.getId().value(),
                         variables
                 );
