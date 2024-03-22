@@ -2,7 +2,7 @@ package ch.unisg.factory.core.services;
 
 import ch.unisg.factory.core.entities.Factory;
 import ch.unisg.factory.core.entities.TransferOfGoodsRequest;
-import ch.unisg.factory.core.services.commands.ScheduleTransferCommandPayload;
+import ch.unisg.factory.core.services.commands.ConfirmTransferCommandPayload;
 import ch.unisg.factory.core.services.commands.TransportGoodsCommandPayload;
 import ch.unisg.factory.infrastructure.adapters.messages.CiraMessageSender;
 import ch.unisg.factory.infrastructure.adapters.messages.Message;
@@ -11,8 +11,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("TransportGoodsProcess")
-public class TransportGoodsProcess implements JavaDelegate {
+@Service("ConfirmTransferProcess")
+public class ConfirmTransferProcess implements JavaDelegate {
 
     @Autowired
     private CiraMessageSender messageSender;
@@ -28,10 +28,10 @@ public class TransportGoodsProcess implements JavaDelegate {
         String traceId = context.getProcessBusinessKey();
 
         messageSender.send(
-                new Message<TransportGoodsCommandPayload>(
-                        "TransportGoodsCommand",
+                new Message<ConfirmTransferCommandPayload>(
+                        "ConfirmTransferCommand",
                         traceId,
-                        new TransportGoodsCommandPayload()
+                        new ConfirmTransferCommandPayload()
                                 .setRefId(request.getId().value())
                                 .setAmount(request.getGoodsAmount().value())
                 )

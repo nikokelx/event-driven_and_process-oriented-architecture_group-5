@@ -71,7 +71,7 @@
   </bpmn:process>
   <bpmn:message id="Message_3i5d5gl" name="TransferScheduledEvent" />
   <bpmn:message id="Message_1f0yoea" name="TransferScheduledEvent" />
-  <bpmn:message id="Message_09fehva" name="TransferScheduledEvent" />
+  <bpmn:message id="Message_09fehva" name="TransferConfirmedEvent" />
   <bpmn:category id="Category_11xog2y">
     <bpmn:categoryValue id="CategoryValue_01i8d1q" value="Logistics" />
   </bpmn:category>

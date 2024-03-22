@@ -15,13 +15,13 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0km0gnv</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_0f5whzw" name="Check quality and amount of the transfer" camunda:delegateExpression="">
+    <bpmn:serviceTask id="Activity_0f5whzw" name="Check quality and amount of the transfer" camunda:delegateExpression="#{CheckQualityAndAmountProcess}">
       <bpmn:incoming>Flow_0jcu8de</bpmn:incoming>
       <bpmn:outgoing>Flow_1sqs22m</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:startEvent id="Event_17lffq8" name="Confirm transport collection">
       <bpmn:outgoing>Flow_0jcu8de</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0x4lf6w" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0x4lf6w" messageRef="Message_2io17tp" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1sqs22m" sourceRef="Activity_0f5whzw" targetRef="Gateway_1b4ifc7" />
     <bpmn:sequenceFlow id="Flow_0s5zhan" sourceRef="Gateway_1b4ifc7" targetRef="Activity_07awkv7" />
@@ -36,11 +36,11 @@
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_1gghl0m" sourceRef="Activity_1upmmh4" targetRef="Gateway_02nk4iw" />
     <bpmn:sequenceFlow id="Flow_0km0gnv" sourceRef="Gateway_02nk4iw" targetRef="Event_0nv0mf5" />
-    <bpmn:serviceTask id="Activity_07awkv7" name="Increase stock level" camunda:delegateExpression="">
+    <bpmn:serviceTask id="Activity_07awkv7" name="Increase stock level" camunda:delegateExpression="#{IncreaseStockLevelProcess}">
       <bpmn:incoming>Flow_0s5zhan</bpmn:incoming>
       <bpmn:outgoing>Flow_09eg97w</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_19lixzf" name="Assign stock id" camunda:delegateExpression="">
+    <bpmn:serviceTask id="Activity_19lixzf" name="Assign stock id" camunda:delegateExpression="#{AssignStockIdProcess}">
       <bpmn:incoming>Flow_0uztj93</bpmn:incoming>
       <bpmn:outgoing>Flow_11yzxwo</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -49,6 +49,7 @@
       <bpmn:outgoing>Flow_1gghl0m</bpmn:outgoing>
     </bpmn:userTask>
   </bpmn:process>
+  <bpmn:message id="Message_2io17tp" name="ConfirmTransferCommand" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0dv59in">
       <bpmndi:BPMNShape id="Participant_19dnzgp_di" bpmnElement="Participant_19dnzgp" isHorizontal="true">
