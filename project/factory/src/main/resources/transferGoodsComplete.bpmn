@@ -28,11 +28,11 @@
       <bpmn:incoming>Flow_0uzmvoo</bpmn:incoming>
       <bpmn:outgoing>Flow_1om4z8v</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_112xaqt" name="Pack inventory" camunda:delegateExpression="#{PackInventoryAdapter}">
+    <bpmn:serviceTask id="Activity_112xaqt" name="Pack inventory" camunda:delegateExpression="#{PackInventoryProcess}">
       <bpmn:incoming>Flow_141nd1v</bpmn:incoming>
       <bpmn:outgoing>Flow_0ddlfkt</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sendTask id="Activity_0zf5xlc" name="Transport Goods" camunda:delegateExpression="#{ScheduleTransferProcess}">
+    <bpmn:sendTask id="Activity_0zf5xlc" name="Transport Goods" camunda:delegateExpression="#{TransportGoodsProcess}">
       <bpmn:incoming>Flow_058f4vx</bpmn:incoming>
       <bpmn:outgoing>Flow_1o588s0</bpmn:outgoing>
     </bpmn:sendTask>
@@ -40,7 +40,7 @@
       <bpmn:incoming>Flow_1o588s0</bpmn:incoming>
       <bpmn:outgoing>Flow_0onq4lx</bpmn:outgoing>
     </bpmn:receiveTask>
-    <bpmn:sendTask id="Activity_1kc6hlq" name="Confirm Transfer" camunda:delegateExpression="#{ScheduleTransferProcess}">
+    <bpmn:sendTask id="Activity_1kc6hlq" name="Confirm Transfer" camunda:delegateExpression="#{ConfirmTransferProcess}">
       <bpmn:incoming>Flow_0onq4lx</bpmn:incoming>
       <bpmn:outgoing>Flow_14axl4u</bpmn:outgoing>
     </bpmn:sendTask>

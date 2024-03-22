@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_022pcp9" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.20.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:collaboration id="Collaboration_15iu2wi">
+    <bpmn:participant id="Participant_0va1u1u" name="Logistics" processRef="TransportGoodsProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="TransportGoodsProcess" name="Transport Goods" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:serviceTask id="Activity_0jr3stt" name="Transport goods" camunda:delegateExpression="#{TransportGoodsAdapter}">
+      <bpmn:incoming>Flow_142f1pm</bpmn:incoming>
+      <bpmn:outgoing>Flow_10c6lx6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1jq4b50" name="Transport cannot be finished">
+      <bpmn:incoming>Flow_0anza0j</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1bt7kri" />
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_1hahdjf" name="Goods transported">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="#{GoodsTransportedProcess}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10c6lx6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_1a40xaa" name="Fetch goods">
+      <bpmn:incoming>Flow_06bvq1w</bpmn:incoming>
+      <bpmn:outgoing>Flow_142f1pm</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_1sv533o" name="Note down the incident">
+      <bpmn:incoming>Flow_01stacv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0anza0j</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="Event_0uzk814" name="Transport goods">
+      <bpmn:outgoing>Flow_06bvq1w</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0vum7jn" messageRef="Message_3cf054f" />
+    </bpmn:startEvent>
+    <bpmn:boundaryEvent id="Event_1e7dgmu" attachedToRef="Activity_0jr3stt">
+      <bpmn:outgoing>Flow_01stacv</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_18wfhqm" errorRef="Error_0omf3y0" camunda:errorMessageVariable="transportAccidentErrorMessage" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_142f1pm" sourceRef="Activity_1a40xaa" targetRef="Activity_0jr3stt" />
+    <bpmn:sequenceFlow id="Flow_10c6lx6" sourceRef="Activity_0jr3stt" targetRef="Event_1hahdjf" />
+    <bpmn:sequenceFlow id="Flow_0anza0j" sourceRef="Activity_1sv533o" targetRef="Event_1jq4b50" />
+    <bpmn:sequenceFlow id="Flow_06bvq1w" sourceRef="Event_0uzk814" targetRef="Activity_1a40xaa" />
+    <bpmn:sequenceFlow id="Flow_01stacv" name="Transfer truck accident" sourceRef="Event_1e7dgmu" targetRef="Activity_1sv533o" />
+  </bpmn:process>
+  <bpmn:message id="Message_3cf054f" name="TransportGoodsCommand" />
+  <bpmn:error id="Error_0omf3y0" name="transport_accident" errorCode="transport_accident" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_15iu2wi">
+      <bpmndi:BPMNShape id="Participant_0va1u1u_di" bpmnElement="Participant_0va1u1u" isHorizontal="true">
+        <dc:Bounds x="150" y="80" width="690" height="260" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s0awyr_di" bpmnElement="Activity_0jr3stt">
+        <dc:Bounds x="480" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0armkxe_di" bpmnElement="Event_1jq4b50">
+        <dc:Bounds x="762" y="262" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="739" y="238" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1hahdjf_di" bpmnElement="Event_1hahdjf">
+        <dc:Bounds x="762" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="753" y="165" width="55" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vpxv6k_di" bpmnElement="Activity_1a40xaa">
+        <dc:Bounds x="310" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ak2dbx_di" bpmnElement="Activity_1sv533o">
+        <dc:Bounds x="570" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jozcw2_di" bpmnElement="Event_0uzk814">
+        <dc:Bounds x="212" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="190" y="165" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1e7dgmu_di" bpmnElement="Event_1e7dgmu">
+        <dc:Bounds x="532" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_142f1pm_di" bpmnElement="Flow_142f1pm">
+        <di:waypoint x="410" y="140" />
+        <di:waypoint x="480" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10c6lx6_di" bpmnElement="Flow_10c6lx6">
+        <di:waypoint x="580" y="140" />
+        <di:waypoint x="762" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0anza0j_di" bpmnElement="Flow_0anza0j">
+        <di:waypoint x="670" y="280" />
+        <di:waypoint x="762" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06bvq1w_di" bpmnElement="Flow_06bvq1w">
+        <di:waypoint x="248" y="140" />
+        <di:waypoint x="310" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01stacv_di" bpmnElement="Flow_01stacv">
+        <di:waypoint x="550" y="198" />
+        <di:waypoint x="550" y="280" />
+        <di:waypoint x="570" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="500" y="217" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
