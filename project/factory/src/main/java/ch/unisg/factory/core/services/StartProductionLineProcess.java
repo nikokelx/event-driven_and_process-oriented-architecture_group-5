@@ -1,27 +1,23 @@
 package ch.unisg.factory.core.services;
 
 import ch.unisg.factory.core.entities.Machine;
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
+import io.camunda.zeebe.client.ZeebeClient;
+import io.camunda.zeebe.spring.client.annotation.JobWorker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("StartProductionLine")
-public class StartProductionLineProcess implements JavaDelegate {
+@Service("start-production-line")
+public class StartProductionLineProcess {
 
-    private Machine machine = Machine.getMachine();
+    @Autowired
+    private ZeebeClient client;
 
-    @Override
-    public void execute(DelegateExecution execution) {
+    @JobWorker(type = "start-production-line")
+    public void startProductionLineProcess() {
 
-        if (machine.getMachineStatus().getValue()) {
+        client.newPublishMessageCommand().messageName("Message_3r6ifmt").correlationKey("orderId").messageId("Message_3r6ifmt").send();
 
-            execution.setVariable("machineStatus", (boolean)true);
-
-        } else {
-
-            execution.setVariable("machineStatus", (boolean)false);
-
-        }
+        System.out.println("HELLO MY FREIND from the other side");
 
 
     }

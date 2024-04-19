@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Machine {
@@ -28,12 +27,16 @@ public class Machine {
     @Getter
     private MachineProductionStatus machineProductionStatus;
 
+    @Setter @Getter
+    private MachineProductionSpeed machineProductionSpeed;
+
     private static final Machine machine = new Machine(
             new MachineId(0),
             new MachineStatus(Status.INACTIVE),
             new MachineFillLevel(0),
             new MachineCapacity(100),
-            new MachineProductionStatus(false)
+            new MachineProductionStatus(false),
+            new MachineProductionSpeed(0)
     );
 
     private Machine(
@@ -41,13 +44,15 @@ public class Machine {
             MachineStatus machineStatus,
             MachineFillLevel machineFillLevel,
             MachineCapacity machineCapacity,
-            MachineProductionStatus machineProductionStatus
+            MachineProductionStatus machineProductionStatus,
+            MachineProductionSpeed machineProductionSpeed
     ) {
         this.machineId = machineId;
         this.machineStatus = machineStatus;
         this.machineFillLevel = machineFillLevel;
         this.machineCapacity = machineCapacity;
         this.machineProductionStatus = machineProductionStatus;
+        this.machineProductionSpeed = machineProductionSpeed;
     }
 
     public static Machine getMachine() {
@@ -139,6 +144,11 @@ public class Machine {
 
     @Value
     public static class MachineCapacity {
+        int value;
+    }
+
+    @Value
+    public static class MachineProductionSpeed {
         int value;
     }
 

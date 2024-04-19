@@ -62,8 +62,14 @@
         </dependency>
 
         <dependency>
+            <groupId>io.camunda.spring</groupId>
+            <artifactId>spring-boot-starter-camunda</artifactId>
+            <version>8.4.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.camunda</groupId>
-            <artifactId>spring-zeebe-starter</artifactId>
+            <artifactId>zeebe-client-java</artifactId>
             <version>8.4.0</version>
         </dependency>
 
