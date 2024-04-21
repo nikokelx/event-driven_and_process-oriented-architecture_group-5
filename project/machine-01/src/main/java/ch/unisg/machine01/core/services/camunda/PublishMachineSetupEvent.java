@@ -20,13 +20,9 @@ public class PublishMachineSetupEvent {
 
         System.out.println("Event: Publish Machine Setup");
 
-        HashMap variables = new HashMap();
-        variables.put("Test", "Test");
-
         zeebeClient.newPublishMessageCommand()
                 .messageName("MachineSetup")
-                .correlationKey("Active")
-                .variables(variables)
+                .correlationKey("machine01")
                 .send();
 
         zeebeClient.newCompleteCommand(activatedJob.getKey())

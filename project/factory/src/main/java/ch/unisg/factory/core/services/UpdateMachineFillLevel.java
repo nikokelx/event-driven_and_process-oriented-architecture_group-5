@@ -1,6 +1,7 @@
 package ch.unisg.factory.core.services;
 
 import ch.unisg.factory.core.entities.Factory;
+import ch.unisg.factory.core.entities.Machine;
 import ch.unisg.factory.core.entities.TransferOfGoodsRequest;
 import ch.unisg.factory.core.ports.in.UpdateMachineFillLevelCommand;
 import ch.unisg.factory.core.ports.in.UpdateMachineFillLevelUseCase;
@@ -25,8 +26,14 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
     private final PublishFactoryInventoryLevelPort publishFactoryInventoryLevelPort;
 
+    private final Machine machine = Machine.getMachine();
+
     @Override
     public void updateMachineFillLevel(UpdateMachineFillLevelCommand command) {
+
+        machine.setMachineFillLevel(new Machine.MachineFillLevel(command.getMachineFillLevel().getValue()));
+
+        /*
         Factory factory = Factory.getFactory();
 
         if (command.getMachineFillLevel().getValue() >= 10) {
@@ -54,5 +61,7 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
                 System.out.println("Start TransferGoodsRequest Process");
             }
         }
+
+        */
     }
 }

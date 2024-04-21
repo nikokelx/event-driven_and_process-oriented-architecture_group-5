@@ -1,6 +1,7 @@
 package ch.unisg.factory.controllers.event;
 
 import ch.unisg.factory.core.entities.Machine;
+import ch.unisg.factory.core.entities.Outbox;
 import ch.unisg.factory.core.ports.in.UpdateMachineFillLevelCommand;
 import ch.unisg.factory.core.ports.in.UpdateMachineFillLevelUseCase;
 import lombok.RequiredArgsConstructor;

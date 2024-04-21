@@ -1,8 +1,12 @@
 package ch.unisg.machine01.core.entities;
 
+import ch.unisg.machine01.core.ports.out.FillLevelEventPort;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -79,6 +83,8 @@ public class Machine {
     }
 
     public static class ProductionThread implements Runnable {
+
+
         private Thread worker;
         private final AtomicBoolean running = new AtomicBoolean(false);
         private int interval;
@@ -102,7 +108,7 @@ public class Machine {
         public void run() {
 
             Machine machine = getMachine();
-            increment = 1;
+
             running.set(true);
 
             while (running.get()) {

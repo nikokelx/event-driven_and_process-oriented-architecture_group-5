@@ -7,22 +7,16 @@ import io.camunda.zeebe.spring.client.annotation.JobWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("publish-start-production-line")
-public class PublishStartProductionLineEvent {
+@Service("adapt-production-speed")
+public class AdaptProductionSpeedTask {
 
     @Autowired
     private ZeebeClient zeebeClient;
 
-    @JobWorker(type = "publish-start-production", autoComplete = false)
-    public void publishStartProductionLineEvent(final JobClient jobClient, final ActivatedJob activatedJob) {
-
-        zeebeClient.newPublishMessageCommand()
-                .messageName("StartProduction")
-                .correlationKey("factory")
-                .send();
+    @JobWorker(type = "adapt-production-speed-task", autoComplete = false)
+    public void adaptProductionSpeed(final JobClient jobClient, final ActivatedJob activatedJob) {
 
         zeebeClient.newCompleteCommand(activatedJob.getKey())
                 .send();
     }
-
 }

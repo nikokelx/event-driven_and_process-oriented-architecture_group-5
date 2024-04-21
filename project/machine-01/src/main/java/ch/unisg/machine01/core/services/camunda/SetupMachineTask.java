@@ -19,7 +19,7 @@ public class SetupMachineTask {
 
     private Machine machine = Machine.getMachine();
 
-    @JobWorker(type = "setup-machine-task")
+    @JobWorker(type = "setup-machine-task", autoComplete = false)
     public void setupMachine(final JobClient jobClient, final ActivatedJob activatedJob) {
 
         System.out.println("Event: Setting up machine");

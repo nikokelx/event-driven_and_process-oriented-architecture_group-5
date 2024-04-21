@@ -21,8 +21,7 @@ public class StartMachineProductionTask {
 
         System.out.println("Event: Start Machine Production");
 
-
-        Machine.ProductionThread productionThread = new Machine.ProductionThread(2000, 1);
+        Machine.ProductionThread productionThread = new Machine.ProductionThread(2000, machine.getMachineProductionSpeed().getValue());
         Machine.MachineProductionStatus machineProductionStatus = machine.getMachineProductionStatus();
 
         machineProductionStatus.toggle();

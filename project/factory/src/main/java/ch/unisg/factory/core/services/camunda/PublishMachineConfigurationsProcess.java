@@ -3,12 +3,11 @@ package ch.unisg.factory.core.services.camunda;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
 import io.camunda.zeebe.client.api.worker.JobClient;
-import io.camunda.zeebe.spring.client.annotation.JobWorker;
+import io.camunda.zeebe.spring.client.annotation.Variable;
 import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service("publish-machine-configurations")
 public class PublishMachineConfigurationsProcess {
@@ -16,21 +15,23 @@ public class PublishMachineConfigurationsProcess {
     @Autowired
     private ZeebeClient zeebeClient;
 
-    @ZeebeWorker( type = "publish-machine-configurations", autoComplete = true)
-    public void publishMachineConfigurations(final JobClient jobClient, final ActivatedJob activatedJob) {
-        System.out.println("Event: Check Machine Status, Bla Bla Bla");
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
-        HashMap variables = new HashMap();
-        variables.put("machineSetup", "");
-        variables.put("startProduction", "");
+    @ZeebeWorker( type = "publish-machine-configurations", autoComplete = false)
+    public void publishMachineConfigurations(
+            final JobClient jobClient,
+            final ActivatedJob activatedJob,
+            @Variable int productionSpeed
 
-        zeebeClient.newPublishMessageCommand()
-                .messageName("MachineConfigurations")
-                .correlationKey("")
-                .variables("{ \"machineSetup\" : \"\"}")
+    ) {
+
+        System.out.println("Event: Publish Machine Configurations");
+
+        kafkaTemplate.send("machine-configurations", String.valueOf(productionSpeed));
+
+        zeebeClient.newCompleteCommand(activatedJob.getKey())
                 .send();
-
-        zeebeClient.newCompleteCommand(activatedJob.getKey()).variables("{ \"machineSetup\" : \"\"}").send();
     }
 
 }
