@@ -17,7 +17,7 @@ public class CheckMachineStatusProcess {
 
     @JobWorker(type = "check-machine-status")
     public void checkMachineStatus(final JobClient clientJob, final ActivatedJob job) {
-        System.out.println("Welcome from check machine status process");
+        System.out.println("Event: Check Machine Status");
 
         client.newPublishMessageCommand()
                 .messageName("MachineStatus")
@@ -25,7 +25,6 @@ public class CheckMachineStatusProcess {
                 .send();
 
         HashMap variables = new HashMap();
-        variables.put("test2", "Test2");
 
         clientJob.newCompleteCommand(job.getKey()).variables(variables).send();
 
