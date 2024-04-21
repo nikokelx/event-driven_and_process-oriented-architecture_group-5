@@ -4,6 +4,7 @@ import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
 import io.camunda.zeebe.client.api.worker.JobClient;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
+import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,21 +14,23 @@ import java.util.HashMap;
 public class PublishMachineConfigurationsProcess {
 
     @Autowired
-    ZeebeClient zeebeClient;
+    private ZeebeClient zeebeClient;
 
-    @JobWorker(type = "publish-machine-configurations")
+    @ZeebeWorker( type = "publish-machine-configurations", autoComplete = true)
     public void publishMachineConfigurations(final JobClient jobClient, final ActivatedJob activatedJob) {
-        System.out.println("Event: Check Machine Status");
-
-        zeebeClient.newPublishMessageCommand()
-                .messageName("Event_135q3c0")
-                .correlationKey("machines")
-                .send();
+        System.out.println("Event: Check Machine Status, Bla Bla Bla");
 
         HashMap variables = new HashMap();
         variables.put("machineSetup", "");
+        variables.put("startProduction", "");
 
-        zeebeClient.newCompleteCommand(activatedJob.getKey()).variables(variables).send();
+        zeebeClient.newPublishMessageCommand()
+                .messageName("MachineConfigurations")
+                .correlationKey("")
+                .variables("{ \"machineSetup\" : \"\"}")
+                .send();
+
+        zeebeClient.newCompleteCommand(activatedJob.getKey()).variables("{ \"machineSetup\" : \"\"}").send();
     }
 
 }
