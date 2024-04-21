@@ -21,11 +21,15 @@ public class RequestLogisticsEvent {
         HashMap variables = new HashMap();
         variables.put("gooodsRequested", goodsRequested);
 
+        zeebeClient.newCreateInstanceCommand().bpmnProcessId("Process_000efve").latestVersion().send();
+
+        /*
         zeebeClient.newPublishMessageCommand()
                 .messageName("RequestWarehouse")
                 .correlationKey("")
                 .variables(variables)
                 .send();
+        */
 
         zeebeClient.newCompleteCommand(activatedJob.getKey()).send();
     }

@@ -14,7 +14,9 @@ public class RequestWarehouseEvent {
 
      @JobWorker(type = "request-warehouse-event", autoComplete = false)
     public void requestWarehouseEvent(ActivatedJob activatedJob) {
-         zeebeClient.newPublishMessageCommand().messageName("RequestFactory").correlationKey("request-warehouse").send();
+
+         zeebeClient.newCreateInstanceCommand().bpmnProcessId("Process_1qc7kt6").latestVersion().send();
+         // zeebeClient.newPublishMessageCommand().messageName("RequestFactory").correlationKey("request-warehouse").send();
          zeebeClient.newCompleteCommand(activatedJob.getKey()).send();
      }
 }
