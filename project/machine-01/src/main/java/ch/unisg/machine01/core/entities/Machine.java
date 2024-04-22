@@ -1,10 +1,13 @@
 package ch.unisg.machine01.core.entities;
 
+import ch.unisg.machine01.core.ports.out.FillLevelEventPort;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Machine {
@@ -28,12 +31,16 @@ public class Machine {
     @Getter
     private MachineProductionStatus machineProductionStatus;
 
+    @Setter @Getter
+    private MachineProductionSpeed machineProductionSpeed;
+
     private static final Machine machine = new Machine(
             new MachineId(0),
             new MachineStatus(Status.INACTIVE),
             new MachineFillLevel(0),
             new MachineCapacity(100),
-            new MachineProductionStatus(false)
+            new MachineProductionStatus(false),
+            new MachineProductionSpeed(0)
     );
 
     private Machine(
@@ -41,13 +48,15 @@ public class Machine {
             MachineStatus machineStatus,
             MachineFillLevel machineFillLevel,
             MachineCapacity machineCapacity,
-            MachineProductionStatus machineProductionStatus
+            MachineProductionStatus machineProductionStatus,
+            MachineProductionSpeed machineProductionSpeed
     ) {
         this.machineId = machineId;
         this.machineStatus = machineStatus;
         this.machineFillLevel = machineFillLevel;
         this.machineCapacity = machineCapacity;
         this.machineProductionStatus = machineProductionStatus;
+        this.machineProductionSpeed = machineProductionSpeed;
     }
 
     public static Machine getMachine() {
@@ -74,6 +83,8 @@ public class Machine {
     }
 
     public static class ProductionThread implements Runnable {
+
+
         private Thread worker;
         private final AtomicBoolean running = new AtomicBoolean(false);
         private int interval;
@@ -97,7 +108,7 @@ public class Machine {
         public void run() {
 
             Machine machine = getMachine();
-            increment = 1;
+
             running.set(true);
 
             while (running.get()) {
@@ -139,6 +150,11 @@ public class Machine {
 
     @Value
     public static class MachineCapacity {
+        int value;
+    }
+
+    @Value
+    public static class MachineProductionSpeed {
         int value;
     }
 

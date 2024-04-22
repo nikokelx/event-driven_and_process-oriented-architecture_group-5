@@ -32,18 +32,6 @@ services:
     depends_on:
       - zookeeper
 
-  camunda:
-    image: "camunda/camunda-bpm-platform:run-latest"
-    hostname: camunda
-    volumes:
-      - ./../bpmn/startProductionLine.bpmn:/configuration/resources/startProductionLine.bpmn
-    ports:
-      - 8085:8080
-    networks:
-      - cira-network
-    depends_on:
-      - kafka
-
   factory:
     container_name: factory
     hostname: factory

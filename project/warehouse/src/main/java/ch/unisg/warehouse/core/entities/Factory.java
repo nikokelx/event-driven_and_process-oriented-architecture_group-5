@@ -8,7 +8,7 @@ public class Factory {
     @Getter @Setter
     private InventoryLevel inventoryLevel;
 
-    //Note:--> using the Singleton pattern here to make lives easy
+    //Note:--> using the Singleton pattern here to make life easier
     @Getter
     private static final Factory factory = new Factory();
 
