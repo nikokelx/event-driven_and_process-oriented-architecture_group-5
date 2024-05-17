@@ -3,14 +3,6 @@
   <bpmn:message id="Message_1f9pa7s" name="ScheduleTransferCommand" />
   <bpmn:collaboration id="Collaboration_0mba7al">
     <bpmn:participant id="Participant_1xam4iy" name="Logistics" processRef="ScheduleTransferOfGoodsProcess" />
-    <bpmn:textAnnotation id="TextAnnotation_15a9lwf">
-      <bpmn:text>Does nothing for now!</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:textAnnotation id="TextAnnotation_0ffgxz8">
-      <bpmn:text>Does nothing for now!</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_1u16u8u" associationDirection="None" sourceRef="Activity_0otn6xy" targetRef="TextAnnotation_15a9lwf" />
-    <bpmn:association id="Association_1di69pn" associationDirection="None" sourceRef="Activity_0ipu63s" targetRef="TextAnnotation_0ffgxz8" />
   </bpmn:collaboration>
   <bpmn:process id="ScheduleTransferOfGoodsProcess" name="Schedule Transfer Of Goods" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:serviceTask id="Activity_0ipu63s" name="Generate STR docs" camunda:expression="#{true}">
@@ -83,22 +75,6 @@
         <di:waypoint x="730" y="240" />
         <di:waypoint x="812" y="240" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1di69pn_di" bpmnElement="Association_1di69pn">
-        <di:waypoint x="369" y="200" />
-        <di:waypoint x="375" y="171" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1u16u8u_di" bpmnElement="Association_1u16u8u">
-        <di:waypoint x="528" y="200" />
-        <di:waypoint x="534" y="171" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_15a9lwf_di" bpmnElement="TextAnnotation_15a9lwf">
-        <dc:Bounds x="490" y="130" width="97" height="41" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1ug3y6j" bpmnElement="TextAnnotation_0ffgxz8">
-        <dc:Bounds x="340" y="130" width="97" height="41" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
