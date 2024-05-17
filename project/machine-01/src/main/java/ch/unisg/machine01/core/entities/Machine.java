@@ -35,7 +35,7 @@ public class Machine {
     private MachineProductionSpeed machineProductionSpeed;
 
     private static final Machine machine = new Machine(
-            new MachineId(0),
+            new MachineId(1),
             new MachineStatus(Status.INACTIVE),
             new MachineFillLevel(0),
             new MachineLastIncrease(0),
@@ -82,7 +82,6 @@ public class Machine {
     }
 
     public static class ProductionThread implements Runnable {
-
         private Thread worker;
         private final AtomicBoolean running = new AtomicBoolean(false);
         private int interval;

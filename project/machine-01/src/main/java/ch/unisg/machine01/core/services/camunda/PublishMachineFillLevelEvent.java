@@ -28,7 +28,7 @@ public class PublishMachineFillLevelEvent {
 
         System.out.println("Event: Publish Machine Fill Level");
 
-        int machineFillLevel = machine.getMachineFillLevel().getValue();
+        double machineFillLevel = machine.getMachineFillLevel().getValue();
 
         HashMap variables = new HashMap();
         variables.put("machineFillLevel", machineFillLevel);

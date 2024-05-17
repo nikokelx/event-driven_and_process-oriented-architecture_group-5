@@ -1,6 +1,7 @@
 package ch.unisg.machine02.core.services;
 
 import ch.unisg.machine02.core.entities.Machine;
+import ch.unisg.machine02.core.entities.MachineData;
 import ch.unisg.machine02.core.ports.in.ToggleProductionCommand;
 import ch.unisg.machine02.core.ports.in.ToggleProductionUseCase;
 import ch.unisg.machine02.core.ports.out.FillLevelEventPort;
@@ -18,7 +19,7 @@ public class ToggleProductionService implements ToggleProductionUseCase {
     // Get Machine
     Machine machine = Machine.getMachine();
     Machine.MachineProductionStatus machineProductionStatus = machine.getMachineProductionStatus();
-    private final Machine.ProductionThread productionThread = new Machine.ProductionThread(2000, 1);
+    private final Machine.ProductionThread productionThread = new Machine.ProductionThread(2000);
 
     private class EventThread implements Runnable {
         private Thread worker;
@@ -47,7 +48,14 @@ public class ToggleProductionService implements ToggleProductionUseCase {
                 try {
                     Thread.sleep(interval);
 
+                    MachineData machineData = new MachineData(
+                            new MachineData.MachineId(machine.getMachineId().getValue()),
+                            new MachineData.MachineProductionPerSecond(machine.getMachineLastIncrease().getValue()),
+                            new MachineData.MachineFillLevel(machine.getMachineFillLevel().getValue())
+                    );
+
                     fillLevelEventPort.publishFillLevel(machine.getMachineFillLevel());
+                    fillLevelEventPort.publishMachineData(machineData);
 
                     if (machine.getMachineFillLevel().getValue() == machine.getMachineCapacity().getValue()) {
                         this.stop();
