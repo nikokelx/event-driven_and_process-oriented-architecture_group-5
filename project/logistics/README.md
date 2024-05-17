@@ -47,4 +47,4 @@ public class MessageListener {
 }
 ```
 
-And later correlated by `commandsHandler` to start the sub-processes `Schedule Transfer Process` and `Transport Goods Process`
+And later correlated by `commandsHandler` to start the sub-processes `Schedule Transfer Process` and `Transport Goods Process`.
