@@ -11,6 +11,6 @@ public class MachineData {
     public record MachineId(int value) { }
 
     public record MachineProductionPerSecond(double value) { }
-    public record MachineFillLevel(int value) { }
+    public record MachineFillLevel(double value) { }
 
 }
