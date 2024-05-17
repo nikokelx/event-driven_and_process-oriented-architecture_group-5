@@ -3,6 +3,7 @@ package ch.unisg.machine01.core.entities;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
+import java.util.Random;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -19,7 +20,10 @@ public class Machine {
     private MachineStatus machineStatus;
 
     @Setter @Getter
-    private  MachineFillLevel machineFillLevel;
+    private MachineFillLevel machineFillLevel;
+
+    @Setter @Getter
+    private MachineLastIncrease machineLastIncrease;
 
     @Getter
     private MachineCapacity machineCapacity;
@@ -34,6 +38,7 @@ public class Machine {
             new MachineId(0),
             new MachineStatus(Status.INACTIVE),
             new MachineFillLevel(0),
+            new MachineLastIncrease(0),
             new MachineCapacity(100),
             new MachineProductionStatus(false),
             new MachineProductionSpeed(0)
@@ -43,6 +48,7 @@ public class Machine {
             MachineId machineId,
             MachineStatus machineStatus,
             MachineFillLevel machineFillLevel,
+            MachineLastIncrease machineLastIncrease,
             MachineCapacity machineCapacity,
             MachineProductionStatus machineProductionStatus,
             MachineProductionSpeed machineProductionSpeed
@@ -50,6 +56,7 @@ public class Machine {
         this.machineId = machineId;
         this.machineStatus = machineStatus;
         this.machineFillLevel = machineFillLevel;
+        this.machineLastIncrease = machineLastIncrease;
         this.machineCapacity = machineCapacity;
         this.machineProductionStatus = machineProductionStatus;
         this.machineProductionSpeed = machineProductionSpeed;
@@ -57,10 +64,6 @@ public class Machine {
 
     public static Machine getMachine() {
         return machine;
-    }
-
-    public void setMachineFillLevel(int value) {
-        this.machineFillLevel = new MachineFillLevel(value);
     }
 
     public boolean getMachineStatus() {
@@ -80,16 +83,40 @@ public class Machine {
 
     public static class ProductionThread implements Runnable {
 
-
         private Thread worker;
         private final AtomicBoolean running = new AtomicBoolean(false);
         private int interval;
 
-        private int increment;
+        private double increment;
 
-        public ProductionThread(int sleepInterval, int productionIncrement) {
+        private double CalculateRandomIncrease() {
+            Random random = new Random();
+            double rangeSelector = random.nextDouble();
+
+            double PROBABILITY_HIGH_RANGE = 0.9;
+            double LOW_RANGE_MIN = 0.5;
+            double LOW_RANGE_MAX = 0.8;
+            double HIGH_RANGE_MIN = 0.8;
+            double HIGH_RANGE_MAX = 1.3;
+
+            // If the generated number is within the high probability range
+            if (rangeSelector < PROBABILITY_HIGH_RANGE) {
+                // Return a random value between 0.8 and 1.3
+                return HIGH_RANGE_MIN + (HIGH_RANGE_MAX - HIGH_RANGE_MIN) * random.nextDouble();
+            } else {
+                // Return a random value between 0.5 and 0.8
+                return LOW_RANGE_MIN + (LOW_RANGE_MAX - LOW_RANGE_MIN) * random.nextDouble();
+            }
+        }
+
+//        public ProductionThread(int sleepInterval, int productionIncrement) {
+//            interval = sleepInterval;
+//            increment = productionIncrement;
+//        }
+
+        public ProductionThread(int sleepInterval) {
             interval = sleepInterval;
-            increment = productionIncrement;
+            increment = CalculateRandomIncrease();
         }
 
         public void start() {
@@ -115,10 +142,11 @@ public class Machine {
                     Thread.currentThread().interrupt();
                 }
 
-                int machineFillLevel = machine.getMachineFillLevel().getValue();
+                double machineFillLevel = machine.getMachineFillLevel().getValue();
 
                 if (machineFillLevel < machine.getMachineCapacity().getValue()) {
-                    machine.setMachineFillLevel(machineFillLevel + this.increment);
+                    machine.setMachineFillLevel(new MachineFillLevel(machineFillLevel + this.increment));
+                    machine.setMachineLastIncrease(new MachineLastIncrease(this.increment));
                 } else {
                     this.stop();
                 }
@@ -141,7 +169,12 @@ public class Machine {
 
     @Value
     public static class MachineFillLevel {
-        int value;
+        double value;
+    }
+
+    @Value
+    public static class MachineLastIncrease {
+        double value;
     }
 
     @Value

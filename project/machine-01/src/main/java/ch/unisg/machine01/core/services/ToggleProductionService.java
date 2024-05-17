@@ -49,6 +49,7 @@ public class ToggleProductionService implements ToggleProductionUseCase {
                     Thread.sleep(interval);
 
                     fillLevelEventPort.publishFillLevel(machine.getMachineFillLevel());
+                    fillLevelEventPort.publishMachineData();
 
                     if (machine.getMachineFillLevel().getValue() == machine.getMachineCapacity().getValue()) {
                         this.stop();
