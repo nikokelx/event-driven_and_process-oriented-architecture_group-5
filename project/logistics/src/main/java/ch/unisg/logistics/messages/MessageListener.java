@@ -19,7 +19,7 @@ public class MessageListener {
         switch (messageType) {
             case "ScheduleTransferCommand" -> commandsHandler.ScheduleTransfer(messagePayloadJson);
             case "TransportGoodsCommand" -> commandsHandler.TransportGoods(messagePayloadJson);
-            case "ConfirmTransferCommand" -> commandsHandler.ConfirmTransfer(messagePayloadJson);
+            //case "ConfirmTransferCommand" -> commandsHandler.ConfirmTransfer(messagePayloadJson);
             default -> {
                 System.out.println("Ignoring message in Logistics ML of type " + messageType);
             }
