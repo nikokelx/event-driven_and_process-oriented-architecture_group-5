@@ -4,7 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Service;
 
-@Service("IncreaseStockLevelProcess")
+@Service("AssignStockIdProcess")
 public class AssignStockIdProcess implements JavaDelegate {
     @Override
     public void execute(DelegateExecution context) throws Exception {
