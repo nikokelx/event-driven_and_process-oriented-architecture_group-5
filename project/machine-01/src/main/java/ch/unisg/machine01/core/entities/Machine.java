@@ -109,6 +109,7 @@ public class Machine {
             }
         }
 
+        // Modified for part 2
 //        public ProductionThread(int sleepInterval, int productionIncrement) {
 //            interval = sleepInterval;
 //            increment = productionIncrement;
@@ -154,7 +155,6 @@ public class Machine {
                 System.out.println(machineFillLevel);
             }
         }
-
     }
 
     @Value
