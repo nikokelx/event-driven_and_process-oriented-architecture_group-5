@@ -85,6 +85,19 @@ services:
     depends_on:
       - kafka
 
+  machine-02:
+    container_name: machine-02
+    hostname: machine-02
+    build:
+      context: ./machine-02
+      dockerfile: Dockerfile
+    ports:
+      - "4001:4001"
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
+
 networks:
   cira-network:
     driver: bridge

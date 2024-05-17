@@ -1,4 +1,4 @@
-package ch.unisg.machine01.core.entities;
+package ch.unisg.machine02.core.entities;
 
 import lombok.Getter;
 import lombok.Setter;
