@@ -5,6 +5,10 @@ import ch.unisg.factory.core.ports.in.ToggleMachineStatusCommand;
 import ch.unisg.factory.core.ports.in.ToggleMachineStatusUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.TopicPartition;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -14,10 +18,9 @@ public class MachineStatusEventListener {
     private final ToggleMachineStatusUseCase toggleMachineStatusUseCase;
 
     @KafkaListener(topics = "machine-status", containerFactory = "kafkaListenerStringFactory")
-    public void consumeMessage(String message) {
-        // kafkaTemplate.send(topicCustomLog, "Receive Event: Machine Status toggle.");
+    public void consumeMessage(@Payload String message, @Header(value = KafkaHeaders.RECEIVED_KEY, required = false) String key) {
 
-        System.out.println(message);
+        // kafkaTemplate.send(topicCustomLog, "Receive Event: Machine Status toggle.");
 
         Machine.MachineStatus machineStatus;
 

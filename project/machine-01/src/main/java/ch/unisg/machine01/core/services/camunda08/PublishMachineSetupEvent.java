@@ -1,4 +1,4 @@
-package ch.unisg.machine01.core.services.camunda;
+package ch.unisg.machine01.core.services.camunda08;
 
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
@@ -6,8 +6,6 @@ import io.camunda.zeebe.client.api.worker.JobClient;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service("publish-machine-setup")
 public class PublishMachineSetupEvent {

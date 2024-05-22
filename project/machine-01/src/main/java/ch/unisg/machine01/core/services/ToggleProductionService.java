@@ -1,7 +1,6 @@
 package ch.unisg.machine01.core.services;
 
 import ch.unisg.machine01.core.entities.Machine;
-import ch.unisg.machine01.core.entities.MachineData;
 import ch.unisg.machine01.core.ports.in.ToggleProductionCommand;
 import ch.unisg.machine01.core.ports.in.ToggleProductionUseCase;
 import ch.unisg.machine01.core.ports.out.FillLevelEventPort;
@@ -15,13 +14,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @RequiredArgsConstructor
 public class ToggleProductionService implements ToggleProductionUseCase {
 
+    // retrieve outgoing ports
     private final FillLevelEventPort fillLevelEventPort;
 
-    // Get Machine
+    // retrieve the machine
     Machine machine = Machine.getMachine();
+
+    // retrieve the machine production status
     Machine.MachineProductionStatus machineProductionStatus = machine.getMachineProductionStatus();
+
+    // create a new production thread
     private final Machine.ProductionThread productionThread = new Machine.ProductionThread(2000);
 
+    // create a new event thread
     private class EventThread implements Runnable {
         private Thread worker;
         private final AtomicBoolean running = new AtomicBoolean(false);
@@ -49,15 +54,10 @@ public class ToggleProductionService implements ToggleProductionUseCase {
                 try {
                     Thread.sleep(interval);
 
-                    MachineData machineData = new MachineData(
-                            new MachineData.MachineId(machine.getMachineId().getValue()),
-                            new MachineData.MachineProductionPerSecond(machine.getMachineLastIncrease().getValue()),
-                            new MachineData.MachineFillLevel(machine.getMachineFillLevel().getValue())
-                    );
-
+                    // emit the fill level
                     fillLevelEventPort.publishFillLevel(machine.getMachineFillLevel());
-                    fillLevelEventPort.publishMachineData(machineData);
 
+                    // if the capacity is reached stop the event thread
                     if (machine.getMachineFillLevel().getValue() == machine.getMachineCapacity().getValue()) {
                         this.stop();
                     }

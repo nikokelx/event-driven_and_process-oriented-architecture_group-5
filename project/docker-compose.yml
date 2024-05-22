@@ -31,6 +31,35 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
+  
+        #  schema-registry:
+        #    image: confluentinc/cp-schema-registry:latest
+        #    container_name: schema-registry
+        #    hostname: schema-registry
+        #    depends_on:
+        #      - zookeeper
+        #      - kafka
+        #    networks:
+        #      - cira-network
+        #    environment:
+        #      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+        #      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+        #      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
+        #    ports:
+        #      - "8081:8081"
+        #  
+  event-processor:
+    container_name: event-processor
+    hostname: event-processor
+    build: 
+      context: ./event-processor
+      dockerfile: Dockerfile
+    ports:
+      - "4231:4231"
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
 
   factory:
     container_name: factory
@@ -40,7 +69,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-      - "8081:8080"
     networks:
       - cira-network
     depends_on:
@@ -80,6 +108,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
+    environment:
+      MACHINE: "machine-01"
     networks:
       - cira-network
     depends_on:
@@ -93,6 +123,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4001:4001"
+    environment:
+      MACHINE: "machine-03"
     networks:
       - cira-network
     depends_on:

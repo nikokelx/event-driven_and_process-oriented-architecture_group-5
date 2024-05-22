@@ -68,6 +68,6 @@ public class Machine {
 
     @Value
     public static class MachineFillLevel {
-        int value;
+        double value;
     }
 }

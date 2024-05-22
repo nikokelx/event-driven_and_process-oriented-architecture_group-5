@@ -1,4 +1,4 @@
-package ch.unisg.machine01.core.entities;
+package ch.unisg.machine01.archive;
 
 import lombok.AllArgsConstructor;
 
@@ -8,7 +8,7 @@ public class MachineData {
     private MachineProductionPerSecond machineProductionPerSecond;
     private MachineFillLevel machineFillLevel;
 
-    public record MachineId(int value) { }
+    public record MachineId(String value) { }
 
     public record MachineProductionPerSecond(double value) { }
     public record MachineFillLevel(double value) { }

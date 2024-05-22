@@ -1,6 +1,5 @@
 package ch.unisg.machine01.config;
 
-import ch.unisg.machine01.core.entities.MachineData;
 import org.springframework.beans.factory.annotation.Value;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -24,6 +23,7 @@ public class KafkaProducerConfig {
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // String Producer
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     @Bean
     public ProducerFactory<String, String> producerStringFactory() {
         Map<String, Object> configProps = new HashMap<>();
@@ -33,7 +33,6 @@ public class KafkaProducerConfig {
         configProps.put(ProducerConfig.RETRIES_CONFIG, 3);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
@@ -47,7 +46,7 @@ public class KafkaProducerConfig {
     // Json Producer - MachineData
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Bean
-    public ProducerFactory<String, MachineData> producerMachineDataFactory() {
+    public ProducerFactory<String, Object> producerObjectFactory() {
         Map<String, Object> configProps = new HashMap<>();
 
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -60,7 +59,32 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, MachineData> kafkaMachineDataTemplate() {
-        return new KafkaTemplate<>(producerMachineDataFactory());
+    public KafkaTemplate<String, Object> kafkaObjectTemplate() {
+        return new KafkaTemplate<>(producerObjectFactory());
     }
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // Avro Producer - Machine
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    /*
+    @Bean
+    public ProducerFactory<String, MachineStream> producerAvroFactory() {
+
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+        config.put("schema.registry.url", "http://schema-registry:8081");
+
+        return new DefaultKafkaProducerFactory<>(config);
+
+    }
+
+    @Bean
+    public KafkaTemplate<String, MachineStream> producerFactory() {
+        return new KafkaTemplate<>(producerAvroFactory());
+    }
+
+     */
 }
