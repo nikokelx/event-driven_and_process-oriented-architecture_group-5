@@ -42,11 +42,13 @@ public class CiRaTopology {
         KStream<String, MachineFillLevel> mediumMachineFillLevel = result.get("medium-machine-fill-level");
         KStream<String, MachineFillLevel> highMachineFillLevel = result.get("high-machine-fill-level");
 
+
+
         /** KStream MachineProduction */
 
         Consumed<String, MachineProduction> machineProductionOptions =
-                Consumed.with(Serdes.String(), JsonSerdes.MachineProduction());
-                        //.withTimestampExtractor(new ProductionTimeStampExtractor());
+                Consumed.with(Serdes.String(), JsonSerdes.MachineProduction())
+                        .withTimestampExtractor(new ProductionTimeStampExtractor());
 
 
         KStream<String, MachineProduction> streamMachineProduction = builder.stream("stream-machine-production", machineProductionOptions);
@@ -74,8 +76,8 @@ public class CiRaTopology {
         /** KStream MachineTemperature */
 
         Consumed<String, MachineTemperature> machineTemperatureOptions =
-                Consumed.with(Serdes.String(), JsonSerdes.MachineTemperature());
-                        // .withTimestampExtractor(new TemperatureTimeStampExtractor());
+                Consumed.with(Serdes.String(), JsonSerdes.MachineTemperature())
+                        .withTimestampExtractor(new TemperatureTimeStampExtractor());
 
         KStream<String, MachineTemperature> streamMachineTemperature = builder.stream("stream-machine-temperature", machineTemperatureOptions);
 
@@ -97,9 +99,6 @@ public class CiRaTopology {
 
         KStream<String, Machine> machineJoined =
                 streamMachineProduction.join(filteredStreamMachineTemperature, valueJoiner, joinWindows, joinParams);
-
-        // print stream
-        machineJoined.foreach((key, value) -> System.out.println("Join output: " + key + " " + value));
 
         // Enrich
 

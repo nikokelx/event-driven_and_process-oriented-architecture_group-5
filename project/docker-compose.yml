@@ -107,29 +107,49 @@ services:
       context: ./machine-01
       dockerfile: Dockerfile
     ports:
-      - "4000:4000"
+      - "4001:4001"
     environment:
       MACHINE: "machine-01"
+      SERVERPORT: 4001
+      TEMPERATURE: 20.0
     networks:
       - cira-network
     depends_on:
       - kafka
-
+  
   machine-02:
     container_name: machine-02
     hostname: machine-02
     build:
-      context: ./machine-02
+      context: ./machine-01
       dockerfile: Dockerfile
     ports:
-      - "4001:4001"
+      - 4002:4002
     environment:
-      MACHINE: "machine-03"
+      MACHINE: "machine-02"
+      SERVERPORT: 4002
+      TEMPERATURE: 69.0
     networks:
       - cira-network
     depends_on:
       - kafka
 
+  machine-03:
+    container_name: machine-03
+    hostname: machine-03
+    build:
+      context: ./machine-01
+      dockerfile: Dockerfile
+    ports:
+      - 4003:4003
+    environment:
+      MACHINE: "machine-03"
+      SERVERPORT: 4003
+      TEMPERATURE: 96.0
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
 networks:
   cira-network:
     driver: bridge

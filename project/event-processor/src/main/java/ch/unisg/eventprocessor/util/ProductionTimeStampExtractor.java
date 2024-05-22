@@ -12,28 +12,17 @@ import java.util.Locale;
 
 public class ProductionTimeStampExtractor implements TimestampExtractor {
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-
     @Override
     public long extract(ConsumerRecord<Object, Object> consumerRecord, long partitionTime) {
-
+     
         MachineProduction measurement = (MachineProduction) consumerRecord.value();
-
         if (measurement != null && measurement.getTimestamp() != null) {
-
             String timestamp = measurement.getTimestamp();
-
-            try {
-                Date parsedDate = dateFormat.parse(timestamp);
-                return parsedDate.getTime();
-
-            } catch (ParseException e) {
-
-                throw new RuntimeException(e);
-            }
-
+            // System.out.println("Extracting timestamp: " + timestamp);
+            return Instant.parse(timestamp).toEpochMilli();
         }
         // fallback to stream time
         return partitionTime;
+
     }
 }

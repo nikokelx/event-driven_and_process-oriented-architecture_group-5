@@ -57,7 +57,7 @@ public class ToggleMachineProductionStreamService implements ToggleMachineProduc
 
                     fillLevelStreamPort.streamFillLevel(machine.getMachineFillLevel());
                     productionStreamPort.streamProduction(machine.getMachineLastIncrease());
-                    temperatureStreamPort.streamTemperature(new Machine.MachineTemperature(25));
+                    temperatureStreamPort.streamTemperature(machine.getMachineTemperature());
 
                     // if the capacity is reached stop the event thread
                     if (machine.getMachineFillLevel().getValue() == machine.getMachineCapacity().getValue()) {

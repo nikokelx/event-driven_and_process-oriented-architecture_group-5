@@ -1,6 +1,8 @@
 package ch.unisg.factory.controllers.event.streams;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class StreamListener {
 
     @KafkaListener(topics = "machine-stream", containerFactory = "kafkaListenerObjectFactory")
-    public void consumeStream(String message) {
-        System.out.println(message);
+    public void consumeStream(ConsumerRecord<String, String> record) {
+        System.out.println(record.key() + ": " + record.value());
     }
 }

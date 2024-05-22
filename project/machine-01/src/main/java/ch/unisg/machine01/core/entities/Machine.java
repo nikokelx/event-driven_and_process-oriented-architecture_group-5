@@ -43,7 +43,7 @@ public class Machine {
             new MachineFillLevel(0),
             new MachineLastIncrease(0),
             new MachineCapacity(100),
-            new MachineTemperature(0.0),
+            new MachineTemperature(Double.valueOf(System.getenv("TEMPERATURE"))),
             new MachineProductionStatus(false),
             new MachineProductionSpeed(2)
     );
