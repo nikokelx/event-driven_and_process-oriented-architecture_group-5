@@ -43,7 +43,6 @@ public class CiRaTopology {
         KStream<String, MachineFillLevel> highMachineFillLevel = result.get("high-machine-fill-level");
 
 
-
         /** KStream MachineProduction */
 
         Consumed<String, MachineProduction> machineProductionOptions =

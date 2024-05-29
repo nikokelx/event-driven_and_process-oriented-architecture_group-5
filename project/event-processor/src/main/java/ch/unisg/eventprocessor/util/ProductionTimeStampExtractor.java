@@ -14,7 +14,7 @@ public class ProductionTimeStampExtractor implements TimestampExtractor {
 
     @Override
     public long extract(ConsumerRecord<Object, Object> consumerRecord, long partitionTime) {
-     
+
         MachineProduction measurement = (MachineProduction) consumerRecord.value();
         if (measurement != null && measurement.getTimestamp() != null) {
             String timestamp = measurement.getTimestamp();
