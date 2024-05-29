@@ -10,7 +10,7 @@
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_1jq4b50" name="Transport cannot be finished">
       <bpmn:incoming>Flow_0anza0j</bpmn:incoming>
-      <bpmn:errorEventDefinition id="ErrorEventDefinition_1bt7kri" />
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1bt7kri" errorRef="Error_0omf3y0" />
     </bpmn:endEvent>
     <bpmn:endEvent id="Event_1hahdjf" name="Goods transported">
       <bpmn:extensionElements>
@@ -22,7 +22,7 @@
       <bpmn:incoming>Flow_06bvq1w</bpmn:incoming>
       <bpmn:outgoing>Flow_142f1pm</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_1sv533o" name="Note down the incident">
+    <bpmn:serviceTask id="Activity_1sv533o" name="Note down the incident" camunda:delegateExpression="#{NoteDownAccidentAdapter}">
       <bpmn:incoming>Flow_01stacv</bpmn:incoming>
       <bpmn:outgoing>Flow_0anza0j</bpmn:outgoing>
     </bpmn:serviceTask>
