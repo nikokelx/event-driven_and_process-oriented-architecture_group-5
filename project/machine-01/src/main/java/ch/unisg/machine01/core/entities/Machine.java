@@ -1,13 +1,10 @@
 package ch.unisg.machine01.core.entities;
 
-import ch.unisg.machine01.core.ports.out.FillLevelEventPort;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Machine {
@@ -16,17 +13,23 @@ public class Machine {
         ACTIVE, INACTIVE
     }
 
-    @Getter
-    final MachineId machineId;
+    @Getter @Setter
+    private MachineId machineId;
 
     @Setter @Getter
     private MachineStatus machineStatus;
 
     @Setter @Getter
-    private  MachineFillLevel machineFillLevel;
+    private MachineFillLevel machineFillLevel;
+
+    @Setter @Getter
+    private MachineLastIncrease machineLastIncrease;
 
     @Getter
     private MachineCapacity machineCapacity;
+
+    @Setter @Getter
+    private MachineTemperature machineTemperature;
 
     @Getter
     private MachineProductionStatus machineProductionStatus;
@@ -35,36 +38,38 @@ public class Machine {
     private MachineProductionSpeed machineProductionSpeed;
 
     private static final Machine machine = new Machine(
-            new MachineId(0),
+            new MachineId(System.getenv("MACHINE")),
             new MachineStatus(Status.INACTIVE),
             new MachineFillLevel(0),
+            new MachineLastIncrease(0),
             new MachineCapacity(100),
+            new MachineTemperature(Double.valueOf(System.getenv("TEMPERATURE"))),
             new MachineProductionStatus(false),
-            new MachineProductionSpeed(0)
+            new MachineProductionSpeed(2)
     );
 
     private Machine(
             MachineId machineId,
             MachineStatus machineStatus,
             MachineFillLevel machineFillLevel,
+            MachineLastIncrease machineLastIncrease,
             MachineCapacity machineCapacity,
+            MachineTemperature machineTemperature,
             MachineProductionStatus machineProductionStatus,
             MachineProductionSpeed machineProductionSpeed
     ) {
         this.machineId = machineId;
         this.machineStatus = machineStatus;
         this.machineFillLevel = machineFillLevel;
+        this.machineLastIncrease = machineLastIncrease;
         this.machineCapacity = machineCapacity;
+        this.machineTemperature = machineTemperature;
         this.machineProductionStatus = machineProductionStatus;
         this.machineProductionSpeed = machineProductionSpeed;
     }
 
     public static Machine getMachine() {
         return machine;
-    }
-
-    public void setMachineFillLevel(int value) {
-        this.machineFillLevel = new MachineFillLevel(value);
     }
 
     public boolean getMachineStatus() {
@@ -83,17 +88,15 @@ public class Machine {
     }
 
     public static class ProductionThread implements Runnable {
-
-
         private Thread worker;
         private final AtomicBoolean running = new AtomicBoolean(false);
         private int interval;
 
-        private int increment;
+        private double increment;
 
-        public ProductionThread(int sleepInterval, int productionIncrement) {
-            interval = sleepInterval;
-            increment = productionIncrement;
+        public ProductionThread(int sleepInterval) {
+            this.interval = 2000;
+            this.increment = machine.getMachineProductionSpeed().getValue();
         }
 
         public void start() {
@@ -111,31 +114,41 @@ public class Machine {
 
             running.set(true);
 
+            Random random = new Random();
+
             while (running.get()) {
 
                 try {
-                    Thread.sleep(interval);
+                    Thread.sleep(this.interval);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
 
-                int machineFillLevel = machine.getMachineFillLevel().getValue();
+                double machineFillLevel = machine.getMachineFillLevel().getValue();
 
                 if (machineFillLevel < machine.getMachineCapacity().getValue()) {
-                    machine.setMachineFillLevel(machineFillLevel + this.increment);
-                } else {
-                    this.stop();
-                }
 
-                System.out.println(machineFillLevel);
+                    double rangeSelector = random.nextDouble(-0.5, 0.5);
+
+                    double production = this.increment + rangeSelector;
+
+                    double result = production;
+
+                    machine.setMachineFillLevel(new MachineFillLevel(machineFillLevel + result));
+                    machine.setMachineLastIncrease(new MachineLastIncrease(result));
+
+                } else {
+
+                    this.stop();
+
+                }
             }
         }
-
     }
 
     @Value
     public static class MachineId {
-        int value;
+        String value;
     }
 
     @Value
@@ -145,7 +158,17 @@ public class Machine {
 
     @Value
     public static class MachineFillLevel {
-        int value;
+        double value;
+    }
+
+    @Value
+    public static class MachineLastIncrease {
+        double value;
+    }
+
+    @Value
+    public static class MachineTemperature {
+        double value;
     }
 
     @Value
@@ -168,6 +191,8 @@ public class Machine {
         public void toggle() {
             this.value = !this.value;
         }
+
+        public Boolean getValue() { return value; }
 
         public Boolean getMachineProductionStatus() {
             return value;

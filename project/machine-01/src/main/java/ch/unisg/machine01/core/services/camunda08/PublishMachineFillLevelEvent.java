@@ -1,11 +1,10 @@
-package ch.unisg.machine01.core.services.camunda;
+package ch.unisg.machine01.core.services.camunda08;
 
 import ch.unisg.machine01.core.entities.Machine;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
 import io.camunda.zeebe.client.api.worker.JobClient;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class PublishMachineFillLevelEvent {
 
         System.out.println("Event: Publish Machine Fill Level");
 
-        int machineFillLevel = machine.getMachineFillLevel().getValue();
+        double machineFillLevel = machine.getMachineFillLevel().getValue();
 
         HashMap variables = new HashMap();
         variables.put("machineFillLevel", machineFillLevel);

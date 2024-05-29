@@ -3,7 +3,6 @@ package ch.unisg.logistics.flow;
 import ch.unisg.logistics.messages.CiraMessageSender;
 import ch.unisg.logistics.messages.GoodsTransportedEventPayload;
 import ch.unisg.logistics.messages.Message;
-import ch.unisg.logistics.messages.TransferScheduledEventPayload;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;

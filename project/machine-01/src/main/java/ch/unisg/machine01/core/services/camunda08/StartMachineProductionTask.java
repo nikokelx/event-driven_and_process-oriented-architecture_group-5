@@ -1,4 +1,4 @@
-package ch.unisg.machine01.core.services.camunda;
+package ch.unisg.machine01.core.services.camunda08;
 
 import ch.unisg.machine01.core.entities.Machine;
 import io.camunda.zeebe.client.ZeebeClient;
@@ -21,7 +21,8 @@ public class StartMachineProductionTask {
 
         System.out.println("Event: Start Machine Production");
 
-        Machine.ProductionThread productionThread = new Machine.ProductionThread(2000, machine.getMachineProductionSpeed().getValue());
+        Machine.ProductionThread productionThread = new Machine.ProductionThread(2000);
+
         Machine.MachineProductionStatus machineProductionStatus = machine.getMachineProductionStatus();
 
         machineProductionStatus.toggle();

@@ -15,7 +15,7 @@ public class CollectMachineFillLevel implements CollectMachineFillLevelUseCase {
     public Machine.MachineFillLevel collectMachineFillLevel() {
 
         Machine.MachineFillLevel machineFillLevel = machine.getMachineFillLevel();
-        machine.setMachineFillLevel(0);
+        machine.setMachineFillLevel(new Machine.MachineFillLevel(0));
 
         return machineFillLevel;
     }

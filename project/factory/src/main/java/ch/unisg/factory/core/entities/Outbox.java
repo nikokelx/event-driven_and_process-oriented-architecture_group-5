@@ -8,10 +8,10 @@ import java.util.List;
 
 public class Outbox {
 
-    private List<Integer> machineFillLevels = new ArrayList<>();
+    private List<Double> machineFillLevels = new ArrayList<>();
 
     private Outbox() {
-        this.machineFillLevels.add(0);
+        this.machineFillLevels.add(0.0);
     }
 
     private static final Outbox outbox = new Outbox();
@@ -20,11 +20,11 @@ public class Outbox {
         return outbox;  // Create and return a new instance
     }
 
-    public void addMachineFillLevel(int machineFillLevel) {
+    public void addMachineFillLevel(double machineFillLevel) {
         machineFillLevels.add(machineFillLevel);
     };
 
-    public int getLastMachineFillLevel() {
+    public double getLastMachineFillLevel() {
         if (machineFillLevels.isEmpty()) {
             return 0;
         }

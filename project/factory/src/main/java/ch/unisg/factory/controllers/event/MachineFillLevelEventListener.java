@@ -20,7 +20,7 @@ public class MachineFillLevelEventListener {
 
         System.out.println(message);
 
-        Machine.MachineFillLevel machineFillLevel = new Machine.MachineFillLevel(Integer.valueOf(message));
+        Machine.MachineFillLevel machineFillLevel = new Machine.MachineFillLevel(Double.valueOf(message));
         UpdateMachineFillLevelCommand command = new UpdateMachineFillLevelCommand(machineFillLevel);
 
         updateMachineFillLevelUseCase.updateMachineFillLevel(command);
