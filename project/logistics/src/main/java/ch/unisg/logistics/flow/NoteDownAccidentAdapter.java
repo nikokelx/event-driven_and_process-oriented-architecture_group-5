@@ -1,13 +1,14 @@
-package ch.unisg.warehouse.core.services;
+package ch.unisg.logistics.flow;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Service;
 
-@Service("AssignStockIdProcess")
-public class AssignStockIdProcess implements JavaDelegate {
+@Service("NoteDownAccidentAdapter")
+public class NoteDownAccidentAdapter implements JavaDelegate {
+
     @Override
     public void execute(DelegateExecution context) throws Exception {
-        System.out.println("###### Assigning stock ID of transported goods... ######");
+        System.out.println("###### Transport of goods had an accident! ######");
     }
 }

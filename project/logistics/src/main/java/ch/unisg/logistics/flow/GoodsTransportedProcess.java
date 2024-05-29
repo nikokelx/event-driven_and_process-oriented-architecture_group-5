@@ -9,7 +9,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("TransferScheduledProcess")
+@Service("GoodsTransportedProcess")
 public class GoodsTransportedProcess implements JavaDelegate {
 
     @Autowired
