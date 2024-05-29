@@ -3,14 +3,11 @@ package ch.unisg.machine01.core.services.streams;
 import ch.unisg.machine01.core.entities.Machine;
 import ch.unisg.machine01.core.ports.in.streams.ToggleMachineProductionStreamUseCase;
 import ch.unisg.machine01.core.ports.out.streams.FillLevelStreamPort;
-import ch.unisg.machine01.core.ports.out.streams.MachineDataStreamPort;
 import ch.unisg.machine01.core.ports.out.streams.ProductionStreamPort;
 import ch.unisg.machine01.core.ports.out.streams.TemperatureStreamPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
