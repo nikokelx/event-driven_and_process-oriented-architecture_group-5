@@ -34,8 +34,5 @@ public class EventProcessorApplication {
 
 		System.out.println("Ready to stream!");
 		kafkaStreams.start();
-
-
 	}
-
 }
