@@ -1,6 +1,7 @@
 package ch.unisg.eventprocessor.model;
 
 public class MachineProduction {
+
     private String timestamp;
     private double production;
 

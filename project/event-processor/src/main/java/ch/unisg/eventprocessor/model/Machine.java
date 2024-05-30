@@ -14,7 +14,6 @@ public class Machine {
     }
 
     // Getters and Setters
-
     public double getProduction() {
         return machineProduction.getMachineProduction();
     }

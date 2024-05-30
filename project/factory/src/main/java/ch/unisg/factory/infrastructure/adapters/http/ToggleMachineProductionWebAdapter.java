@@ -18,6 +18,8 @@ public class ToggleMachineProductionWebAdapter implements ToggleMachineProductio
 
     @Override
     public String toggleMachineProduction() {
+
+        // Toggle the machine production
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(server + "/machine/production/toggle"))

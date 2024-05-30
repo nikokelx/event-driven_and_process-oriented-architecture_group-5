@@ -16,11 +16,12 @@ import java.net.http.HttpResponse;
 @Primary
 public class CollectMachineFillLevelWebAdapter implements CollectMachineFillLevelPort {
 
-    String server = "http://machine-01:4000";
+    String server = "http://machine-01:4001";
 
     @Override
     public int collectMachineFillLevel() {
 
+        // collect machine fill level
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(server + "/machine/fill-level/collect"))
@@ -30,6 +31,7 @@ public class CollectMachineFillLevelWebAdapter implements CollectMachineFillLeve
         try {
              HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+             // return the machine fill level back to the service
              return Integer.valueOf(response.body());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);

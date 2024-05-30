@@ -1,6 +1,7 @@
 package ch.unisg.eventprocessor.model;
 
 public class MachineTemperature {
+
     private String timestamp;
     private double temperature;
 

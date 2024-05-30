@@ -7,9 +7,11 @@ import java.util.List;
 
 public class Factory {
 
+    // inventory level of the factory
     @Getter
     private InventoryLevel inventoryLevel;
 
+    // list of goods transfer
     @Getter
     private final TransferOfGoodsRequestList transferOfGoodsRequestList;
 

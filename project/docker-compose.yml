@@ -104,7 +104,7 @@ services:
     container_name: machine-01
     hostname: machine-01
     build:
-      context: ./machine-01
+      context: ./machines
       dockerfile: Dockerfile
     ports:
       - "4001:4001"
@@ -121,7 +121,7 @@ services:
     container_name: machine-02
     hostname: machine-02
     build:
-      context: ./machine-01
+      context: ./machines
       dockerfile: Dockerfile
     ports:
       - 4002:4002
@@ -138,7 +138,7 @@ services:
     container_name: machine-03
     hostname: machine-03
     build:
-      context: ./machine-01
+      context: ./machines
       dockerfile: Dockerfile
     ports:
       - 4003:4003

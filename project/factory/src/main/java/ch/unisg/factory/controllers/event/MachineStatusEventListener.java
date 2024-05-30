@@ -20,10 +20,9 @@ public class MachineStatusEventListener {
     @KafkaListener(topics = "machine-status", containerFactory = "kafkaListenerStringFactory")
     public void consumeMessage(@Payload String message, @Header(value = KafkaHeaders.RECEIVED_KEY, required = false) String key) {
 
-        // kafkaTemplate.send(topicCustomLog, "Receive Event: Machine Status toggle.");
-
         Machine.MachineStatus machineStatus;
 
+        // log machine status
         if (message.equals("ACTIVE")) {
             System.out.println("Machine Status active.");
             machineStatus = new Machine.MachineStatus(true);
@@ -32,10 +31,12 @@ public class MachineStatusEventListener {
             machineStatus = new Machine.MachineStatus(false);
         }
 
+        // create a command
         ToggleMachineStatusCommand command = new ToggleMachineStatusCommand(
                 machineStatus
         );
 
+        // execute command to toggle the machine status
         toggleMachineStatusUseCase.toggleMachineStatus(command);
     }
 

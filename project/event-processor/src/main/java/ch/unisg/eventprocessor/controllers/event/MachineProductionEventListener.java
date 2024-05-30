@@ -8,6 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class MachineProductionEventListener {
 
+    /*
+
+        TEST CONTROLLER
+
+     */
+
     @KafkaListener(topics = "stream-machine-fill-level", containerFactory = "kafkaListenerObjectFactory")
     public void consumeStreamMachineFillLevel(String stream) {
 

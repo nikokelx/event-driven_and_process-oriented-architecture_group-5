@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StreamListener {
 
+    // receive kafka stream from the event processor
     @KafkaListener(topics = "machine-stream", containerFactory = "kafkaListenerObjectFactory")
     public void consumeStream(ConsumerRecord<String, String> record) {
         System.out.println(record.key() + ": " + record.value());
