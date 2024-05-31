@@ -20,6 +20,8 @@ signalling its availability. This event is broadcasted to the designated 'machin
 This event-driven approach enhances system responsiveness and agility, enabling real-time updates
 without necessitating continuous polling or manual intervention.
 
+<img width="673" alt="Bildschirmfoto 2024-05-31 um 23 02 51" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/9322ca73-a9a3-4425-b3b6-f0cc41b65ab8">
+
 ### Event-carried State Transfer
 
 Event-carried state transfer is a paradigm in distributed systems architecture where changes in state
@@ -62,7 +64,6 @@ dependencies and interactions between different saga instances. We use this patt
 
 <img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/a978ae3c-2964-4966-8033-7a5663347101" width="50%"> 
 
-
 ### Stateful Resilience Pattern - Human Intervention
 
 In the Human Intervention pattern the system is designed to gracefully handle exceptional situations
@@ -72,6 +73,8 @@ operators for manual resolution. This pattern ensures that complex or ambiguous 
 addressed by human expertise, maintaining the integrity and reliability of the system. In our system
 this pattern is used to make a decision about a further transfer in case of a transfer truck accident.
 
+<img width="1142" alt="Bildschirmfoto 2024-05-31 um 23 01 52" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/d37a5ffe-b912-47e7-8d25-e649c312135c">
+
 ### Stateful Resilience Pattern - Stateful retry
 
 In the Stateful Retry pattern within event-driven architecture, resilience is achieved by implementing
@@ -79,9 +82,11 @@ a stateful mechanism for retrying failed service tasks. Specifically, each servi
 three times upon encountering a failure. This approach aims to improve the robustness and fault
 tolerance of the system by allowing failed tasks to be automatically retried.
 
+<img width="396" alt="Bildschirmfoto 2024-05-31 um 23 00 10" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/d1b257a8-7734-4376-a308-31f96ad49e17">
+
 ### Outbox pattern
 
-
+<img width="685" alt="Bildschirmfoto 2024-05-31 um 23 00 59" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/c4d0bacb-08e5-4fb0-8b61-86f9a6d8172c">
 
 ### Event Processor - Topology
 #### Event Processor - Router (Map)
