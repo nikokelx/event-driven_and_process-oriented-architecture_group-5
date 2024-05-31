@@ -11,7 +11,9 @@
 
 ## General Description
 
-Blabla bla
+The project encapsulates the supply chain of the company CiRa. Built with Spring Boot, Kafka, and
+Camunda, our system comprises four key parts: Machine, Factory, Warehouse, and Logistics
+microservices, each playing a vital role in making manufacturing smarter and more efficient.
 
 ## Changes to process-oriented architecture (part-01)
 
