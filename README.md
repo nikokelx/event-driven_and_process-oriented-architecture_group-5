@@ -89,14 +89,39 @@ tolerance of the system by allowing failed tasks to be automatically retried.
 <img width="685" alt="Bildschirmfoto 2024-05-31 um 23 00 59" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/c4d0bacb-08e5-4fb0-8b61-86f9a6d8172c">
 
 ### Event Processor - Topology
+
+#### Event Processor - Example of a Kafka Stream Consumer
+
+<img width="1064" alt="grafik" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/e9ca8a8d-1fbd-41c8-96dc-a7b17e136219">
+
 #### Event Processor - Router (Map)
+
+<img width="1064" alt="grafik" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/1073a31a-6287-4436-9532-d528292b3503">
+
 #### Event Processor - Filter
+
+<img width="1064" alt="grafik" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/1e4bd217-5418-4cd5-89c6-58ea24415304">
+
+
 #### Event Processor - Tumbling Window
-#### Event Processor - KTable
-#### Event Processor - Aggregate
-#### Event Processor - Surpress
+
+<img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 08 14" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/727e0d10-93dc-4c65-b3dc-cf3e0bbc6226">
+
+#### Event Processor - KTable, Aggregate, and Suppress
+
+<img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 08 33" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/b3bcd159-d31f-4ce6-84b6-27f18d630f61">
+
+#### Event Processor - Remap
+
+<img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 09 45" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/5f2b62b7-cd70-4c56-b991-aed2dd4ba72d">
+
 #### Event Processor - Time Extractor
+
+<img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 10 37" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/be5b6090-f633-40ca-9557-d7d47d8a2a26">
+
 #### Event Processor - For Each
+
+<img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 09 57" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/c758dc92-0e01-48de-a7d3-42f8b049370f">
 
 ## Tutorial to run the application CiRa
 1. Go to the path /project/.
