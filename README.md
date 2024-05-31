@@ -45,7 +45,7 @@ we can concurrently execute multiple interdependent calls to our machines. This 
 asynchronous communication between services, enabling them to operate independently while
 maintaining consistency across the system.
 
-![StartProductionLineProcess](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/7bf49bef-03ac-4d63-8320-8311679d82ba)
+<img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/7bf49bef-03ac-4d63-8320-8311679d82ba" width="50%"> 
 
 ### Anthology Saga
 
