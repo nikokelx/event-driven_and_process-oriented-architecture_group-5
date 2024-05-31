@@ -41,6 +41,8 @@ Trade-offs:
 * Decoupling and reduced load on Factory
 * Replicated data and eventual consistency
 
+![Event-carried State Transfer(1)](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/73cb995a-6627-4a6c-b568-f5fed1a59f8e)
+
 ### Parallel Saga
 
 The utilization of a parallel saga pattern within our event-driven and process-oriented architecture
