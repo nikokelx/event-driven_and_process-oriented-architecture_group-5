@@ -1,6 +1,19 @@
 # Event-driven and process-oriented Architecture - Group 5
 
-## Changes to process-driven architecture (part-01)
+## Table of Content
+* General Description
+* Changes to process-oriented architecture (part 01)
+* Applied concepts
+* Tutorial to run the application CiRa
+* Architectural Decision Records
+* Assignments
+* Microservices
+
+## General Description
+
+Blabla bla
+
+## Changes to process-oriented architecture (part-01)
 
 * Added description to README files
 * Improved Camunda 8 BPMN processes (labels)
