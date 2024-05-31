@@ -1,5 +1,3 @@
-<img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5" width="100px"> 
-
 ## Changes to process-driven architecture (part-01)
 
 * Added description to README files
@@ -60,9 +58,7 @@ we can handle intricate scenarios with ease, as it provides a structured approac
 dependencies and interactions between different saga instances. We use this pattern for our
 “Supply Chain” process.
 
-<img src="[path/to/image.png](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5)" alt="Description" style="width:300px;">
-
-![Supply Chain Process](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5)
+<img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5" width="50%"> 
 
 
 ### Stateful Resilience Pattern - Human Intervention
