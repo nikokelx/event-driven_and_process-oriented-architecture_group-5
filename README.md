@@ -1,5 +1,3 @@
-![Supply Chain Process](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/680a5ba2-ee87-4725-9e8f-eb1324df74d6)# event-driven_and_process-oriented-architecture_group-5
-
 ## Changes to process-driven architecture (part-01)
 
 * Added description to README files
@@ -59,6 +57,8 @@ facilitating better organization and coordination of business processes. With th
 we can handle intricate scenarios with ease, as it provides a structured approach to managing
 dependencies and interactions between different saga instances. We use this pattern for our
 “Supply Chain” process.
+
+<img src="[path/to/image.png](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5)" alt="Description" style="width:300px;">
 
 ![Supply Chain Process](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5)
 
