@@ -1,3 +1,5 @@
+<img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5" width="100px"> 
+
 ## Changes to process-driven architecture (part-01)
 
 * Added description to README files
