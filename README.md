@@ -58,7 +58,7 @@ we can handle intricate scenarios with ease, as it provides a structured approac
 dependencies and interactions between different saga instances. We use this pattern for our
 “Supply Chain” process.
 
-<img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/3e649556-a21e-4bbf-b278-eb0e5bec01f5" width="50%"> 
+<img src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/a978ae3c-2964-4966-8033-7a5663347101" width="50%"> 
 
 
 ### Stateful Resilience Pattern - Human Intervention
