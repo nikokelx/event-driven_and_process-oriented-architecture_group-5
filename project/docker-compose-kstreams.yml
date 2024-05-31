@@ -117,39 +117,39 @@ services:
     depends_on:
       - kafka
 
-#  machine-02:
-#    container_name: machine-02
-#    hostname: machine-02
-#    build:
-#      context: ./machines
-#      dockerfile: Dockerfile
-#    ports:
-#      - 4002:4002
-#    environment:
-#      MACHINE: "machine-02"
-#      SERVERPORT: 4002
-#      TEMPERATURE: 69.0
-#    networks:
-#      - cira-network
-#    depends_on:
-#      - kafka
-#
-#  machine-03:
-#    container_name: machine-03
-#    hostname: machine-03
-#    build:
-#      context: ./machines
-#      dockerfile: Dockerfile
-#    ports:
-#      - 4003:4003
-#    environment:
-#      MACHINE: "machine-03"
-#      SERVERPORT: 4003
-#      TEMPERATURE: 96.0
-#    networks:
-#      - cira-network
-#    depends_on:
-#      - kafka
+  machine-02:
+    container_name: machine-02
+    hostname: machine-02
+    build:
+      context: ./machines
+      dockerfile: Dockerfile
+    ports:
+      - 4002:4002
+    environment:
+      MACHINE: "machine-02"
+      SERVERPORT: 4002
+      TEMPERATURE: 69.0
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
+      
+  machine-03:
+    container_name: machine-03
+    hostname: machine-03
+    build:
+      context: ./machines
+      dockerfile: Dockerfile
+    ports:
+      - 4003:4003
+    environment:
+      MACHINE: "machine-03"
+      SERVERPORT: 4003
+      TEMPERATURE: 96.0
+    networks:
+      - cira-network
+    depends_on:
+      - kafka
 
 networks:
   cira-network:
