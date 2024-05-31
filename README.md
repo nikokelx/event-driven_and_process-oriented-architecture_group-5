@@ -1,3 +1,5 @@
+# Event-driven and process-oriented Architecture - Group 5
+
 ## Changes to process-driven architecture (part-01)
 
 * Added description to README files
