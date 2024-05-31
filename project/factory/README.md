@@ -2,8 +2,12 @@
 
 ## Introduction
 
-The CiRa-Factory is part of the supply chain. 
-It is responsible for the production, maintaining multiple machines.
+The Factory microservice coordinates various tasks including initiating the production line,
+monitoring machine fill levels, publishing real-time inventory data, and orchestrating complex
+process, of transporting the goods, using Camunda BPMN workflows. Notably, it employs Camunda
+to automate the start of production lines and to schedule transfer commands based on factory
+inventory levels, ensuring optimal resource utilization and production efficiency. Furthermore, 
+it listens to the new implemented kafka stream.
 
 ## Endpoints
 

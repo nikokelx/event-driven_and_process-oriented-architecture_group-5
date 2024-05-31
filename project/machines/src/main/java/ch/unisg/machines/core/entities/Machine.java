@@ -138,7 +138,9 @@ public class Machine {
 
                 // retrieve the machine fill level
                 double machineFillLevel = machine.getMachineFillLevel().getValue();
-
+                System.out.println("PRODUCTION");
+                System.out.println(machineFillLevel);
+                System.out.println(machine.getMachineCapacity().getValue());
                 // if machine fill level is smaller than machine capacity
                 if (machineFillLevel < machine.getMachineCapacity().getValue()) {
 

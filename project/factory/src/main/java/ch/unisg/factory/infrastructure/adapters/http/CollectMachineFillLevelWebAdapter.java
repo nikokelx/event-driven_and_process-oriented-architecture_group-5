@@ -19,7 +19,7 @@ public class CollectMachineFillLevelWebAdapter implements CollectMachineFillLeve
     String server = "http://machine-01:4001";
 
     @Override
-    public int collectMachineFillLevel() {
+    public double collectMachineFillLevel() {
 
         // collect machine fill level
         HttpClient client = HttpClient.newHttpClient();
@@ -32,7 +32,7 @@ public class CollectMachineFillLevelWebAdapter implements CollectMachineFillLeve
              HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
              // return the machine fill level back to the service
-             return Integer.valueOf(response.body());
+             return Double.valueOf(response.body());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

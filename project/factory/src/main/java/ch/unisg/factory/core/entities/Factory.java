@@ -24,7 +24,7 @@ public class Factory {
         this.transferOfGoodsRequestList = new TransferOfGoodsRequestList(new LinkedList<>());
     }
 
-    public void increaseInventoryLevel(int value) {
+    public void increaseInventoryLevel(double value) {
         var currentInventoryLevel = inventoryLevel.value();
         inventoryLevel = new InventoryLevel(currentInventoryLevel + value);
         System.out.println("Increased inventory level from { " + currentInventoryLevel + " } to { " + inventoryLevel.value() + " }");
@@ -51,7 +51,7 @@ public class Factory {
         return null;
     }
 
-    public record InventoryLevel(int value) { }
+    public record InventoryLevel(double value) { }
 
     public record TransferOfGoodsRequestList(List<TransferOfGoodsRequest> value) { }
 }

@@ -20,20 +20,19 @@ public class MachineConfigurationsEventListener {
     private Machine machine = Machine.getMachine();
 
     @KafkaListener(topics = "machine-configurations", containerFactory = "kafkaListenerStringFactory")
-    public void listen(ConsumerRecord<String, String> message) {
+    public void listen(String message) {
 
-        if (message.key().toString().equals("machine-01") ) {
 
-            // Set machine production speed
-            machine.setMachineProductionSpeed(new Machine.MachineProductionSpeed(Integer.valueOf(message.value())));
+        // Set machine production speed
+        machine.setMachineProductionSpeed(new Machine.MachineProductionSpeed(Integer.valueOf(message)));
 
-            // Save machine production speed
-            HashMap variables = new HashMap();
-            variables.put("production_speed", message);
+        // Save machine production speed
+        HashMap variables = new HashMap();
+        variables.put("production_speed", message);
 
-            // Create a new process (Camunda 8)
-            zeebeClient.newCreateInstanceCommand().bpmnProcessId("Process_0r1fn32").latestVersion().variables(variables).send();
+        // Create a new process (Camunda 8)
+        zeebeClient.newCreateInstanceCommand().bpmnProcessId("Process_0r1fn32").latestVersion().variables(variables).send();
 
-        }
+
     }
 }

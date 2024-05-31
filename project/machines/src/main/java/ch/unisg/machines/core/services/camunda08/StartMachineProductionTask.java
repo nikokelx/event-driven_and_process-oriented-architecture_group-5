@@ -19,8 +19,6 @@ public class StartMachineProductionTask {
     @JobWorker(type = "start-machine-production-task", autoComplete = false)
     public void startMachineProduction(final JobClient jobClient, final ActivatedJob activatedJob) {
 
-
-
         System.out.println("Event: Start Machine Production");
 
         // create a new production thread

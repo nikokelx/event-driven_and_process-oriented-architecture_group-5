@@ -36,7 +36,7 @@ public class EmptyMachineBucketTask {
             zeebeClient.newThrowErrorCommand(activatedJob.getKey()).errorCode("ErrorExample").send();
         } else {
             System.out.println("HERE I AM AND YOU SEE MMEEEE");
-            int machineFillLevel = collectMachineFillLevelPort.collectMachineFillLevel();
+            double machineFillLevel = collectMachineFillLevelPort.collectMachineFillLevel();
             factory.increaseInventoryLevel(machineFillLevel - amountGoods);
 
             zeebeClient.newCompleteCommand(activatedJob.getKey())

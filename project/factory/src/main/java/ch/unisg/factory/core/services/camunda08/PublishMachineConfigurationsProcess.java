@@ -28,7 +28,7 @@ public class PublishMachineConfigurationsProcess {
 
         System.out.println("Event: Publish Machine Configurations");
 
-        kafkaTemplate.send("machine-configurations", "machine-01", String.valueOf(productionSpeed));
+        kafkaTemplate.send("machine-configurations", String.valueOf(productionSpeed));
 
         zeebeClient.newCompleteCommand(activatedJob.getKey())
                 .send();

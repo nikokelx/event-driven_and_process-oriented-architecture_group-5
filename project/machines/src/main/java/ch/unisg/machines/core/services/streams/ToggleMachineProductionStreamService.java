@@ -30,7 +30,7 @@ public class ToggleMachineProductionStreamService implements ToggleMachineProduc
         private int interval;
 
         public EventThread(int sleepInterval) {
-            this.interval = 4000;
+            this.interval = sleepInterval;
         }
 
         public void start() {
@@ -46,10 +46,11 @@ public class ToggleMachineProductionStreamService implements ToggleMachineProduc
             running.set(true);
 
             Machine machine = Machine.getMachine();
-
+            System.out.println("EVENT DOES IT START?");
             while (running.get()) {
+                System.out.println("EVENT 1");
                 try {
-
+                    System.out.println("EVENT 2");
                     Thread.sleep(this.interval);
 
                     // emit three data streams
@@ -57,12 +58,15 @@ public class ToggleMachineProductionStreamService implements ToggleMachineProduc
                     productionStreamPort.streamProduction(machine.getMachineLastIncrease());
                     temperatureStreamPort.streamTemperature(machine.getMachineTemperature());
 
+                    System.out.println("EvENT 3");
                     // if the capacity is reached stop the event thread
                     if (machine.getMachineFillLevel().getValue() == machine.getMachineCapacity().getValue()) {
                         this.stop();
                     }
 
                 } catch (InterruptedException e) {
+
+                    System.out.println("EVENT ERROR");
                     Thread.currentThread().interrupt();
                 }
             }
@@ -71,7 +75,7 @@ public class ToggleMachineProductionStreamService implements ToggleMachineProduc
     }
 
     // Create a new eventThread
-    private EventThread eventThread = new EventThread(100);
+    private EventThread eventThread = new EventThread(4000);
 
     // create a new production thread
     private Machine.ProductionThread productionThread = new Machine.ProductionThread(4000);
@@ -82,15 +86,16 @@ public class ToggleMachineProductionStreamService implements ToggleMachineProduc
         // get machine production status
         machine.getMachineProductionStatus().toggle();
 
+        System.out.println(machine.getMachineProductionStatus().getValue());
         // if machine production status is off
         if (machine.getMachineProductionStatus().getValue()) {
-
+            System.out.println("HERE ; 0");
             // start the production and event streams
             productionThread.start();
             eventThread.start();
             return 0;
         } else {
-
+            System.out.println("HERE ; 1");
             // stop the production and event streams
             productionThread.stop();
             eventThread.stop();

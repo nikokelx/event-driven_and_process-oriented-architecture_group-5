@@ -31,12 +31,6 @@ OR
 curl -H "Content-Type: application/machine-json" -X POST http://127.0.0.1:4000/machine/stream/production/toggle
 ```
 
-## Implemented concepts:
-
-### Business Process Model and Notation
-
-### Kafka Streams
-
 ## Kafka Topics
 * machine-status
 * machine-fill-level
