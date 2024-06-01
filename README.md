@@ -109,37 +109,61 @@ We implemented the Outbox pattern. Here, the Factory microservice listens for ne
 
 ### Event Processor - Topology
 
+The Machine microservice streams three different variables, each with a generated timestamp. The microservice event processor listens to the KStream "stream-machine-fill-level," "stream-machine-production," and "stream-machine-temperature". Finally, the event processor streams a joinedStream to the topic "machine-stream". The microservice Factory is listen to the kstream.
+
 #### Event Processor - Example of a Kafka Stream Consumer
+
+We implemented a Json Serializer, Deserializer, and a Serdes. Therefore, we can consume specific events. 
 
 <img width="1064" alt="grafik" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/e9ca8a8d-1fbd-41c8-96dc-a7b17e136219">
 
 #### Event Processor - Router (Map)
 
+In the KStream MachineFillLevel, we implemented a router (map) to split events into separate branches. The reason for this is that we can respond differently to various values. A low machine fill level does not have high priority as a high machine fill level. We split the stream into three branches: "low-machine-fill-level", "medium-machine-fill-level", "high-machine-fill-level".
+
 <img width="1064" alt="grafik" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/1073a31a-6287-4436-9532-d528292b3503">
 
 #### Event Processor - Filter
+
+For the KStream MachineTemperature, we implemented a simple filter to ignore values below a certain threshold. Temperature values are only important in the upper range.
 
 <img width="1064" alt="Bildschirmfoto 2024-06-01 um 07 43 40" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/f0dab00f-7128-4d2d-b367-66aa88e001bf">
 
 #### Event Processor - Tumbling Window
 
+For the KStream "stream-machine-production," we implemented a tumbling window of 60 seconds with a grace period of 5 seconds.
+
 <img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 08 14" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/727e0d10-93dc-4c65-b3dc-cf3e0bbc6226">
 
 #### Event Processor - KTable, Aggregate, and Suppress
+
+Next, we added a KTable to our topology. In the stream "stream-machine-production," we want to count the number of received production events. First, we group the stream by key. The reason for this is that multiple machines can send their production data. Then, we use the previously mentioned tumbling window. We count and store the KeyValue pair under the key "machine-production-counts." Finally, we configure a suppression to emit only the "final results" from the window.
 
 <img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 08 33" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/b3bcd159-d31f-4ce6-84b6-27f18d630f61">
 
 #### Event Processor - Remap
 
+After successfully creating the KTable, we map new KeyValue pairs to a stream, using the time window as keys and the data from the KTable as values.
+
 <img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 09 45" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/5f2b62b7-cd70-4c56-b991-aed2dd4ba72d">
 
 #### Event Processor - Time Extractor
+
+We decided to create the timestamp in the Machine microservice. This is intended to provide higher accuracy and directly mark the data when reading it out. To achieve this, we had to program a time extractor in the microservice event processor.
 
 <img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 10 37" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/be5b6090-f633-40ca-9557-d7d47d8a2a26">
 
 #### Event Processor - For Each
 
+For debugging purposes, we implemented several for-each loops to print the current state of the stream.
+
 <img width="1064" alt="Bildschirmfoto 2024-05-31 um 23 09 57" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/c758dc92-0e01-48de-a7d3-42f8b049370f">
+
+#### Event Processor - Join MachineTemperature & MachineProduction
+
+In the end, we join the KStream MachineTemperature and MachineProduction. Therefore, we create a join window with a time difference of 60 seconds and a grace period of 10 seconds.
+
+<img width="1064" alt="Bildschirmfoto 2024-06-01 um 07 50 45" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/c90e5d39-5b27-45ea-834d-283af50d56d2">
 
 ## Tutorial to run the application CiRa
 1. Go to the path /project/.
@@ -166,18 +190,18 @@ POST Request to Machine X && POST Request start production line stream
 ### Note: Please do not run it simultaneously. Either run step 3 or step 4. Afterwards, restart the application.
 
 ## Architectural Decision Records
-* [Architecture/Decisions](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/doc/architecture/decisions)
+* [Architecture/Decisions](doc/architecture/decisions)
 
 ## Assignments
 * [Assignment 01](assignments/assignment-1)
 * [Assignment 02](assignments/assignment-2)
 * [Assignment 03](assignments/assignment-3)
-* [Assignment 04](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-4)
-* [Assignment 06]()
-* [Assignment 09]()
+* [Assignment 04](assignments/assignment-4)
+* [Assignment 06](assignments/assignment-6)
+* [Assignment 09](assignments/assignment-9)
 
 ## Microservices
-* [Factory](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/factory)
-* [Warehouse](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/warehouse)
-* [Logistics](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/logistics)
-* [Machines](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/machines)
+* [Factory](project/factory)
+* [Warehouse](project/warehouse)
+* [Logistics](project/logistics)
+* [Machines](project/machines)
