@@ -119,7 +119,7 @@ We implemented the Outbox pattern. Here, the Factory microservice listens for ne
 
 #### Event Processor - Filter
 
-<img width="1064" alt="Bildschirmfoto 2024-06-01 um 07 42 23" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/2a1e3175-d5c0-4f09-b39e-3a99bd4b4514">
+<img width="1064" alt="Bildschirmfoto 2024-06-01 um 07 43 40" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/f0dab00f-7128-4d2d-b367-66aa88e001bf">
 
 #### Event Processor - Tumbling Window
 
