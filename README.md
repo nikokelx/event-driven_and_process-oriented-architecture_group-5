@@ -103,6 +103,8 @@ tolerance of the system by allowing failed tasks to be automatically retried.
 
 ### Outbox pattern
 
+We implemented the Outbox pattern. Here, the Factory microservice listens for new machine fill levels. In the same transaction, the microservice saves the machine fill level in the database and adds a new entry to the end of the Outbox. Finally, a message relay reads the entry and sends the information further.
+
 <img width="685" alt="Bildschirmfoto 2024-05-31 um 23 00 59" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/c4d0bacb-08e5-4fb0-8b61-86f9a6d8172c">
 
 ### Event Processor - Topology
@@ -117,8 +119,7 @@ tolerance of the system by allowing failed tasks to be automatically retried.
 
 #### Event Processor - Filter
 
-<img width="1064" alt="grafik" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/1e4bd217-5418-4cd5-89c6-58ea24415304">
-
+<img width="1064" alt="Bildschirmfoto 2024-06-01 um 07 42 23" src="https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/assets/95875428/2a1e3175-d5c0-4f09-b39e-3a99bd4b4514">
 
 #### Event Processor - Tumbling Window
 
@@ -143,16 +144,21 @@ tolerance of the system by allowing failed tasks to be automatically retried.
 ## Tutorial to run the application CiRa
 1. Go to the path /project/.
 
-2. Execute the command:
+2. Execute the command for process-oriented architecture (a)
 ```
 docker-compose up --build
 ```
 
-3. Run the process on Camunda 8
+2. Execute the command for event-driven architecture (b)
+```
+docker-compose -f docker-compose-kstreams.yml up --build
+```
+
+3a. Run the process on Camunda 8
 
 OR
 
-4. Start Kafka Streams
+3b. Start Kafka Streams
 ```
 POST Request to Machine X && POST Request start production line stream
 ```
@@ -167,6 +173,8 @@ POST Request to Machine X && POST Request start production line stream
 * [Assignment 02](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-2)
 * [Assignment 03](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-3)
 * [Assignment 04](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-4)
+* [Assignment 05]()
+* [Assignment 06]()
 
 ## Microservices
 * [Factory](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/factory)
