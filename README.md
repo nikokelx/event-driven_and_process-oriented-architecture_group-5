@@ -169,12 +169,12 @@ POST Request to Machine X && POST Request start production line stream
 * [Architecture/Decisions](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/doc/architecture/decisions)
 
 ## Assignments
-* [Assignment 01](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-1)
-* [Assignment 02](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-2)
-* [Assignment 03](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-3)
+* [Assignment 01](assignments/assignment-1)
+* [Assignment 02](assignments/assignment-2)
+* [Assignment 03](assignments/assignment-3)
 * [Assignment 04](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/assignments/assignment-4)
-* [Assignment 05]()
 * [Assignment 06]()
+* [Assignment 09]()
 
 ## Microservices
 * [Factory](https://github.com/nikokelx/event-driven_and_process-oriented-architecture_group-5/tree/main/project/factory)
