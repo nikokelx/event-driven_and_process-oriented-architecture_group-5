@@ -178,13 +178,16 @@ docker-compose up --build
 docker-compose -f docker-compose-kstreams.yml up --build
 ```
 
-3a. Run the process on Camunda 8
+3a. Run the StartProductionLineProcess on Camunda 8
 
 OR
 
 3b. Start Kafka Streams
 ```
-POST Request to Machine X && POST Request start production line stream
+curl --location 'localhost:4001/machine/status/toggle' \
+--header 'Content-Type: application/machine+json' \
+--data '{"machineProductionSpeed": 2}' && curl --location --request POST 'localhost:4001/machine/stream/production/toggle' \
+--header 'Content-Type: application/machine+json'
 ```
 
 ### Note: Please do not run it simultaneously. Either run step 3 or step 4. Afterwards, restart the application.
