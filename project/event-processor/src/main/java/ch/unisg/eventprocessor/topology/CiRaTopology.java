@@ -15,7 +15,8 @@ import org.apache.kafka.streams.kstream.*;
 
 import java.time.Duration;
 import java.util.Map;
-
+import org.apache.kafka.common.utils.Bytes;
+import org.apache.kafka.streams.state.KeyValueStore;
 
 public class CiRaTopology {
 
@@ -100,11 +101,17 @@ public class CiRaTopology {
         KStream<String, Machine> machineJoined =
                 streamMachineProduction.join(filteredStreamMachineTemperature, valueJoiner, joinWindows, joinParams);
 
-        // Enrich
+        machineJoined.foreach((key, value) -> System.out.println("################ Machine Production Count: " + key + " " + value));
+
+        // Materialize the joined stream
+        machineJoined.toTable(
+                Materialized.<String, Machine, KeyValueStore<Bytes, byte[]>>as("machine-store")
+                        .withKeySerde(Serdes.String())
+                        .withValueSerde(JsonSerdes.Machine())
+        );
 
         machineJoined.to("machine-stream", Produced.with(Serdes.String(), JsonSerdes.Machine()));
 
         return builder.build();
     }
-
 }
