@@ -20,13 +20,15 @@ public class AccidentTask {
         Random random = new Random();
         double randomDouble = random.nextDouble();
 
-        HashMap variables = new HashMap<>();
+        HashMap<String, Boolean> variables = new HashMap<>();
 
-        if (randomDouble >0.5) {
+        if (randomDouble > 0.5) {
             variables.put("accident", true);
         } else {
             variables.put("accident", false);
         }
+
+        System.out.println("############################################## Accident-task: " + variables.get("accident"));
         zeebeClient.newCompleteCommand(activatedJob.getKey()).variables(variables).send();
     }
 }

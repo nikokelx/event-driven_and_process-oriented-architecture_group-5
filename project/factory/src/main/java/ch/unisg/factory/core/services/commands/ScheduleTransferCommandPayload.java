@@ -3,7 +3,7 @@ package ch.unisg.factory.core.services.commands;
 public class ScheduleTransferCommandPayload {
 
     private String refId;
-    private int amount;
+    private double amount;
 
     public String getRefId() {
         return refId;
@@ -12,10 +12,10 @@ public class ScheduleTransferCommandPayload {
         this.refId = refId;
         return this;
     }
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
-    public ScheduleTransferCommandPayload setAmount(int amount) {
+    public ScheduleTransferCommandPayload setAmount(double amount) {
         this.amount = amount;
         return this;
     }

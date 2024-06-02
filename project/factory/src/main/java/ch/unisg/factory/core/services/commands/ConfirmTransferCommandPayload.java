@@ -3,7 +3,7 @@ package ch.unisg.factory.core.services.commands;
 public class ConfirmTransferCommandPayload {
 
     private String refId;
-    private int amount;
+    private double amount;
 
     public String getRefId() {
         return refId;
@@ -12,10 +12,10 @@ public class ConfirmTransferCommandPayload {
         this.refId = refId;
         return this;
     }
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
-    public ConfirmTransferCommandPayload setAmount(int amount) {
+    public ConfirmTransferCommandPayload setAmount(double amount) {
         this.amount = amount;
         return this;
     }

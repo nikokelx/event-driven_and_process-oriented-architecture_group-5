@@ -16,11 +16,17 @@ public class RequestLogisticsEvent {
     private ZeebeClient zeebeClient;
 
     @JobWorker(type = "requests-logistics-event", autoComplete = false)
-    public void requestLogisticsEvent(ActivatedJob activatedJob, @Variable int goodsRequested) {
+    public void requestLogisticsEvent(ActivatedJob activatedJob, @Variable String goodsRequested) {
 
-        HashMap variables = new HashMap();
-        variables.put("gooodsRequested", goodsRequested);
+        double goods = 0.0;
+        HashMap<String, Double> variables = new HashMap<>();
 
+        if (!goodsRequested.isEmpty() && !goodsRequested.isBlank()) {
+            goods = Double.parseDouble(goodsRequested);
+        }
+
+        System.out.println("################## Goods requested: " + goods);
+        variables.put("goodsRequested", goods);
         zeebeClient.newCreateInstanceCommand().bpmnProcessId("Process_000efve").latestVersion().send();
 
         /*
@@ -31,6 +37,6 @@ public class RequestLogisticsEvent {
                 .send();
         */
 
-        zeebeClient.newCompleteCommand(activatedJob.getKey()).send();
+        zeebeClient.newCompleteCommand(activatedJob.getKey()).variables(variables).send();
     }
 }

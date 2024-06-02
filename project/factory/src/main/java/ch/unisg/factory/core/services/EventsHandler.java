@@ -44,6 +44,8 @@ public class EventsHandler {
         Message<GoodsTransportedEventPayload> message = objectMapper.readValue(messagePayloadJson, new TypeReference<>() {});
         GoodsTransportedEventPayload scheduleTransferCommand = message.getData();
 
+        System.out.println("######--- Transfer of Goods Confirmed -> Process Complete ---######");
+
         runtimeService.createMessageCorrelation(message.getType())
                 .processInstanceBusinessKey(message.getTraceid())
                 .setVariable("refId", scheduleTransferCommand.getRefId())

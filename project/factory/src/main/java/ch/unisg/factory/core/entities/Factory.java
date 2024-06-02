@@ -30,7 +30,7 @@ public class Factory {
         System.out.println("Increased inventory level from { " + currentInventoryLevel + " } to { " + inventoryLevel.value() + " }");
     }
 
-    public void decreaseInventoryLevel(int value) {
+    public void decreaseInventoryLevel(double value) {
         var currentInventoryLevel = inventoryLevel.value();
         var decreasedInventoryLevel = currentInventoryLevel - value;
         inventoryLevel = new InventoryLevel(decreasedInventoryLevel);

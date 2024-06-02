@@ -9,6 +9,7 @@
   </bpmn:collaboration>
   <bpmn:process id="TransferGoodsRequestCompleteProcess" name="Transfer goods process complete" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:startEvent id="Event_09x6h6s" name="Transfer of goods requested">
+      <bpmn:extensionElements />
       <bpmn:outgoing>Flow_1x8wlkj</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sendTask id="Activity_1oxmlq1" name="Schedule Transfer" camunda:delegateExpression="#{ScheduleTransferProcess}">
@@ -36,7 +37,7 @@
       <bpmn:incoming>Flow_058f4vx</bpmn:incoming>
       <bpmn:outgoing>Flow_1o588s0</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:receiveTask id="Activity_1du1mno" name="Goods Transported" messageRef="Message_1f0yoea">
+    <bpmn:receiveTask id="Activity_1du1mno" name="Goods Transported" messageRef="Message_00tm8ri">
       <bpmn:incoming>Flow_1o588s0</bpmn:incoming>
       <bpmn:outgoing>Flow_0onq4lx</bpmn:outgoing>
     </bpmn:receiveTask>
@@ -84,6 +85,7 @@
   <bpmn:category id="Category_06ht1fn">
     <bpmn:categoryValue id="CategoryValue_1sshj0k" value="Factory" />
   </bpmn:category>
+  <bpmn:message id="Message_00tm8ri" name="GoodsTransportedEvent" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_05rkh49">
       <bpmndi:BPMNShape id="Participant_0unr0v7_di" bpmnElement="Participant_0unr0v7" isHorizontal="true">

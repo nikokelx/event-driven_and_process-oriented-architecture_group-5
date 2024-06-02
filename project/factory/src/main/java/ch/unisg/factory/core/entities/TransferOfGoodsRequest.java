@@ -26,6 +26,6 @@ public class TransferOfGoodsRequest {
     }
 
     public record Id(String value) { }
-    public record GoodsAmount(int value) { }
+    public record GoodsAmount(double value) { }
     public record RequestStatus(Status value) { }
 }

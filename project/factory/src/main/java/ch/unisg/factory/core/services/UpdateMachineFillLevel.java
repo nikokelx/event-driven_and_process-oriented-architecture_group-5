@@ -33,19 +33,18 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
         machine.setMachineFillLevel(new Machine.MachineFillLevel(command.getMachineFillLevel().getValue()));
 
-        /*
-        Factory factory = Factory.getFactory();
+        /* Factory factory = Factory.getFactory();
 
-        if (command.getMachineFillLevel().getValue() >= 10) {
+        if (command.getMachineFillLevel().getValue() >= 20) {
 
             // Get goods from the machine
-            int fillLevel = collectMachineFillLevelPort.collectMachineFillLevel();
+            double fillLevel = collectMachineFillLevelPort.collectMachineFillLevel();
             factory.increaseInventoryLevel(fillLevel);
 
             // Emit event
             publishFactoryInventoryLevelPort.publishFactoryInventoryLevel(factory.getInventoryLevel());
 
-            if (factory.getInventoryLevel().value() >= 30 && factory.getInventoryLevel().value() <= 40) {
+            if (factory.getInventoryLevel().value() >= 60) {
                 var goodsAmountToTransfer = new TransferOfGoodsRequest.GoodsAmount(factory.getInventoryLevel().value());
                 TransferOfGoodsRequest transferRequest = new TransferOfGoodsRequest(goodsAmountToTransfer);
                 factory.addNewTransferRequestToList(transferRequest);
@@ -60,8 +59,6 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
                 System.out.println("Start TransferGoodsRequest Process");
             }
-        }
-
-        */
+        }*/
     }
 }
