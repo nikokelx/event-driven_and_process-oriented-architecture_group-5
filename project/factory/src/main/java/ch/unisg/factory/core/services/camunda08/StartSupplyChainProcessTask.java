@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service("start-supply-chain-process")
 public class StartSupplyChainProcessTask {
 
-
     @Autowired
     private ZeebeClient zeebeClient;
 

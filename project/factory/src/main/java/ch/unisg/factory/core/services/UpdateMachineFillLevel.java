@@ -33,7 +33,7 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
         machine.setMachineFillLevel(new Machine.MachineFillLevel(command.getMachineFillLevel().getValue()));
 
-        Factory factory = Factory.getFactory();
+        /* Factory factory = Factory.getFactory();
 
         if (command.getMachineFillLevel().getValue() >= 20) {
 
@@ -59,6 +59,6 @@ public class UpdateMachineFillLevel implements UpdateMachineFillLevelUseCase {
 
                 System.out.println("Start TransferGoodsRequest Process");
             }
-        }
+        }*/
     }
 }

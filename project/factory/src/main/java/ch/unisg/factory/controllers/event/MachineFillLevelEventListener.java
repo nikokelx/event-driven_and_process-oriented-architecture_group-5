@@ -21,7 +21,7 @@ public class MachineFillLevelEventListener {
         System.out.println(message);
 
         // create a command with the machine fill level
-        Machine.MachineFillLevel machineFillLevel = new Machine.MachineFillLevel(Double.valueOf(message));
+        Machine.MachineFillLevel machineFillLevel = new Machine.MachineFillLevel(Double.parseDouble(message));
         UpdateMachineFillLevelCommand command = new UpdateMachineFillLevelCommand(machineFillLevel);
 
         // execute command to update the machine fill level
