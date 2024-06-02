@@ -15,7 +15,7 @@ public class FactoryInventoryLevelListener {
 
     @KafkaListener(topics = "factory-inventory-level", containerFactory = "kafkaListenerStringFactory")
     public void consumeFactoryInventoryLevel(String message) {
-        Factory.InventoryLevel factoryInventoryLevel = new Factory.InventoryLevel(Integer.valueOf(message));
+        Factory.InventoryLevel factoryInventoryLevel = new Factory.InventoryLevel(Double.parseDouble(message));
 
         UpdateFactoryInventoryLevelCommand command = new UpdateFactoryInventoryLevelCommand(factoryInventoryLevel);
         updateFactoryInventoryLevelUseCase.updateFactoryInventoryLevel(command);

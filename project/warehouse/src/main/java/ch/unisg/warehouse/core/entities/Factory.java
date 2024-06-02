@@ -13,23 +13,23 @@ public class Factory {
     private static final Factory factory = new Factory();
 
     private Factory() {
-        this.inventoryLevel = new InventoryLevel(0);
+        this.inventoryLevel = new InventoryLevel(0.0);
     }
 
-    public void increaseInventoryLevel(int value) {
+    public void increaseInventoryLevel(double value) {
         var currentInventoryLevel = inventoryLevel.value();
         inventoryLevel = new InventoryLevel(currentInventoryLevel + value);
         System.out.println("Increased inventory level from { " + currentInventoryLevel + " } to { " + inventoryLevel.value() + " }");
     }
 
-    public void decreaseInventoryLevel(int value) {
+    public void decreaseInventoryLevel(double value) {
         var currentInventoryLevel = inventoryLevel.value();
         var decreasedInventoryLevel = currentInventoryLevel - value;
         inventoryLevel = new InventoryLevel(decreasedInventoryLevel);
         System.out.println("Decreased inventory level from { " + currentInventoryLevel + " } to { " + decreasedInventoryLevel + " }");
     }
 
-    public record InventoryLevel(int value) { }
+    public record InventoryLevel(double value) { }
 }
 
 

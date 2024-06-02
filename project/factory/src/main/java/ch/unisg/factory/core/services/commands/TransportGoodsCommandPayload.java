@@ -3,7 +3,7 @@ package ch.unisg.factory.core.services.commands;
 public class TransportGoodsCommandPayload {
 
     private String refId;
-    private int amount;
+    private double amount;
 
     public String getRefId() {
         return refId;
@@ -12,10 +12,10 @@ public class TransportGoodsCommandPayload {
         this.refId = refId;
         return this;
     }
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
-    public TransportGoodsCommandPayload setAmount(int amount) {
+    public TransportGoodsCommandPayload setAmount(double amount) {
         this.amount = amount;
         return this;
     }
